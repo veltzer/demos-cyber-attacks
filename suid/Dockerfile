@@ -3,8 +3,8 @@ RUN apt-get -yq update
 RUN apt-get -yq dist-upgrade
 RUN apt-get -yq install strace
 
-# install finger and mark it suid
-RUN apt-get install finger
+# copy finger and mark it suid
+COPY finger.elf /usr/bin/finger
 RUN chmod +s /usr/bin/finger
 
 # add the mark accout with secret file

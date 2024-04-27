@@ -12,6 +12,7 @@ import flask
 import mysql.connector
 
 
+DO_MYSQL=False
 host=os.environ.get("env_db_host")
 user=os.environ.get("env_db_user")
 password=os.environ.get("env_db_password")
@@ -21,12 +22,13 @@ print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
 # Connect to the MySQL database
-#mydb = mysql.connector.connect(
-#  host=host,
-#  user=user,
-#  password=password,
-#  database=database,
-# )
+if DO_MYSQL:
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+    )
 
 # mydb.close()
 
@@ -89,4 +91,6 @@ def addsubmit():
 
 port = int(os.environ.get("env_app_port"))
 host = os.environ.get("env_app_host")
-app.run(port=port, host=host)
+
+if __name__ == "__main__":
+    app.run(port=port, host=host)

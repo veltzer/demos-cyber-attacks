@@ -20,6 +20,7 @@ services:
       - .env
     environment:
       - env_db_password=${env_db_password}
+      - env_db_name=${env_db_name}
     ports:
       - "${env_app_port}:${env_app_port}"
     depends_on:

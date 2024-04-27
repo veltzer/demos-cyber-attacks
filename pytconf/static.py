@@ -1,0 +1,5 @@
+""" version which can be consumed from within the module """
+VERSION_STR = "0.0.1"
+DESCRIPTION = "Demos of various cyber attacks"
+APP_NAME = "demos-cyber-attacks"
+LOGGER_NAME = "demos-cyber-attacks"

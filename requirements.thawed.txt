@@ -1,0 +1,15 @@
+# THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
+pyclassifiers
+termcolor
+yattag
+pymakehelper
+pydmt
+pylint
+pytest
+pytest-cov
+flake8
+pyflakes
+mypy
+pylogconf
+types-termcolor
+types-PyYAML

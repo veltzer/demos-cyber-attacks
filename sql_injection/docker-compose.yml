@@ -10,12 +10,13 @@ services:
       MYSQL_ROOT_PASSWORD: ${env_db_password}
       MYSQL_DATABASE: ${env_db_name}
     volumes:
+      - ./mysql_data:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
   app:
     build:
       context: app
     image: app
-    # restart: unless-stopped
+    restart: unless-stopped
     env_file:
       - .env
     environment:

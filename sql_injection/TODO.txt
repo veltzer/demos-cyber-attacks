@@ -1,3 +1,2 @@
-populate the database with data right from the start.
 see that the app works.
 do one endpoint with injection and one without.

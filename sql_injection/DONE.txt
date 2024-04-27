@@ -1,2 +1,3 @@
 setup framework for mysql and app
 added data to mysql
+made the app run under gunicorn

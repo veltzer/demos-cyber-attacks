@@ -89,8 +89,9 @@ def addsubmit():
     return ADDSUMBIT
 
 
-port = int(os.environ.get("env_app_port"))
-host = os.environ.get("env_app_host")
-
 if __name__ == "__main__":
+    port = int(os.environ.get("env_app_port"))
+    host = os.environ.get("env_app_host")
+    print(f"{port=}")
+    print(f"{host=}")
     app.run(port=port, host=host)

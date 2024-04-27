@@ -133,6 +133,7 @@ def describe_table_data_html(conn, table_name):
       html_str += "    <td></td>\n    <td>" + "</td>\n    <td>".join([str(val) for val in row]) + "</td>\n  </tr>\n"
 
     html_str += "</table>\n"
+    html_str += "<button><a href=\"/\">Back to index</a></button>"
     return html_str
 
   except mysql.connector.Error as err:

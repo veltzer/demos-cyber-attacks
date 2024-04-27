@@ -141,6 +141,7 @@ def describe_table_data_html(conn, table_name):
 
 
 app = flask.Flask("app")
+app.config['DEBUG'] = True
 
 
 @app.route("/")
@@ -167,7 +168,7 @@ def addsubmit():
 
 if __name__ == "__main__":
     port = int(os.environ.get("env_app_port"))
-    host = os.environ.get("env_app_host")
+    listen = os.environ.get("env_app_listen")
     print(f"{port=}")
-    print(f"{host=}")
-    app.run(port=port, host=host)
+    print(f"{listen=}")
+    app.run(port=port, host=listen)

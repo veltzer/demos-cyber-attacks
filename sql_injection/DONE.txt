@@ -1,0 +1,2 @@
+setup framework for mysql and app
+added data to mysql

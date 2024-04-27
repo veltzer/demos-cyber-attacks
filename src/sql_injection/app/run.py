@@ -7,10 +7,10 @@ Run the app in gunicorn or flask
 import os
 import subprocess
 
-GUNICORN=False
+GUNICORN = False
 
 if GUNICORN:
-    env_app_port = int(os.environ.get("env_app_port"))
+    env_app_port = int(os.environ["env_app_port"])
     env_app_listen = os.environ.get("env_app_listen")
     print(f"{env_app_port=}")
     print(f"{env_app_listen=}")

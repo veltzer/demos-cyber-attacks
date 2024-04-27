@@ -1,0 +1,2 @@
+write the adding of a book and see that it works.
+do one endpoint with injection and one without.

@@ -110,7 +110,7 @@ def describe_table_data_html(conn, table_name):
                         text("Back to index")
         pretty_html = indent(doc.getvalue())
         return pretty_html
-        return doc.getvalue()
+        # return doc.getvalue()
 
     except mysql.connector.Error as err:
         raise err  # Re-raise the error for handling

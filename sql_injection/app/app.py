@@ -143,10 +143,9 @@ def describe_table_data_html(conn, table_name):
 app = flask.Flask("app")
 app.config['DEBUG'] = True
 
-
-@app.route("/")
-def root():
-    return ROOT
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route("/listbooks")

@@ -8,7 +8,7 @@ A web server suffering from injection problems
 import os
 import flask
 import mysql.connector
-from yattag import Doc
+from yattag import Doc, indent
 
 
 DO_MYSQL = True
@@ -100,12 +100,16 @@ def describe_table_data_html(conn, table_name):
                     table_data = cursor.fetchall()
                     for row in table_data:
                         with tag("tr"):
+                            with tag("td"):
+                                pass
                             for val in row:
                                 with tag("td"):
                                     text(str(val))
                 with tag("buttom"):
                     with tag("a", href="/"):
                         text("Back to index")
+        pretty_html = indent(doc.getvalue())
+        return pretty_html
         return doc.getvalue()
 
     except mysql.connector.Error as err:

@@ -7,6 +7,8 @@ A web server suffering from injection problems
 
 import os
 import flask
+import logging
+from flask import request, make_response
 # from sqlalchemy import create_engine
 import mysql.connector
 from yattag import Doc, indent
@@ -20,6 +22,15 @@ print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
+
+# create a logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
 
 
 def get_connection():
@@ -125,11 +136,11 @@ app.config["MYSQL_DATABASE_PASSWORD"] = password
 app.config["MYSQL_DATABASE_DB"] = database
 app.config["MYSQL_POOL_SIZE"] = 10
 uri = f"mysql+mysqlconnector://{user}:{password}@{host}/{database}"
-app.config['SQLALCHEMY_DATABASE_URI'] = uri
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
 # Optional: Set pool size (default 5)
-app.config['SQLALCHEMY_POOL_SIZE'] = 20
+app.config["SQLALCHEMY_POOL_SIZE"] = 20
 # Optional: Set pool recycle time (default None)
-app.config['SQLALCHEMY_POOL_RECYCLE'] = 300
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 300
 # db = SQLAlchemy(app)
 # pool = MySQL(app)
 # engine = create_engine(uri)
@@ -148,9 +159,30 @@ def listbooks():
         return describe_table_data_html(conn, "books")
 
 
+@app.route("/addbook")
+def addbook():
+    """ This will add a new book to the database """
+    with get_connection() as conn:
+        # Get book details from the request
+        title = request.args.get("title")
+        author = request.args.get("author")
+        genre = request.args.get("genre")
+        year = request.args.get("year")
+
+        # SQL query to insert book data into the database
+        query = "INSERT INTO books (title, author, genre, year) \
+                VALUES (%s, %s, %s, %s)"
+        values = (title, author, genre, year)
+        logger.debug(values)
+        cursor = conn.cursor()
+        cursor.execute(query, values)
+        conn.commit()
+        return "Book added successfully"
+
+
 if __name__ == "__main__":
     port = int(os.environ["env_app_port"])
     listen = os.environ["env_app_listen"]
     print(f"{port=}")
     print(f"{listen=}")
-    app.run(port=port, host=listen)
+    app.run(port=port, host=listen, debug=True)

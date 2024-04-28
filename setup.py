@@ -33,6 +33,8 @@ setuptools.setup(
     install_requires=[
         "termcolor",
         "yattag",
+        "flask",
+        "flask-mysql",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",

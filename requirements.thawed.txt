@@ -2,6 +2,8 @@
 pyclassifiers
 termcolor
 yattag
+flask
+flask-mysql
 pymakehelper
 pydmt
 pylint

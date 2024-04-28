@@ -6,9 +6,9 @@ A web server suffering from injection problems
 
 
 import os
-import flask
 import logging
-from flask import request, make_response
+import flask
+from flask import request
 # from sqlalchemy import create_engine
 import mysql.connector
 from yattag import Doc, indent
@@ -22,6 +22,7 @@ print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
+SAFE = False
 
 # create a logger
 logger = logging.getLogger(__name__)
@@ -170,7 +171,7 @@ def addbook():
         year = request.args.get("year")
 
         cursor = conn.cursor()
-        if False:
+        if SAFE:
             query = "INSERT INTO books (title, author, genre, year) \
                     VALUES (%s, %s, %s, %s)"
             values = (title, author, genre, year)

@@ -21,7 +21,9 @@ print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
 
+
 def get_connection():
+    """ get a fresh connection to the database """
     connection = mysql.connector.connect(
         user=user,
         password=password,

@@ -1,4 +1,4 @@
-personal_ws-1.1 en 994 
+personal_ws-1.1 en 995 
 AARRR
 ACLs
 ADPlus
@@ -833,6 +833,7 @@ netlink
 netstat
 ng
 nginx
+nmap
 nostd
 npm
 numpy

@@ -17,6 +17,8 @@ DO_ALLDEP:=1
 DO_MD_MDL:=1
 # do spell check on all?
 DO_MD_ASPELL:=1
+# do you want to check bash syntax?
+DO_CHECK_SYNTAX:=1
 
 ########
 # CODE #
@@ -48,6 +50,9 @@ MD_BAS:=$(basename $(MD_SRC))
 MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
+ALL_SH:=$(shell find src -name "*.bash")
+ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
+
 ifeq ($(DO_SYNTAX),1)
 ALL+=$(ALL_SYNTAX)
 endif # DO_SYNTAX
@@ -71,6 +76,10 @@ endif # DO_MD_MDL
 ifeq ($(DO_MD_ASPELL),1)
 ALL+=$(MD_ASPELL)
 endif # DO_MD_ASPELL
+
+ifeq ($(DO_CHECK_SYNTAX),1)
+ALL+=$(ALL_STAMP)
+endif # DO_CHECK_SYNTAX
 
 #########
 # RULES #
@@ -107,6 +116,8 @@ debug:
 	$(info MD_BAS is $(MD_BAS))
 	$(info MD_ASPELL is $(MD_ASPELL))
 	$(info MD_MDL is $(MD_MDL))
+	$(info ALL_SH is $(ALL_SH))
+	$(info ALL_STAMP is $(ALL_STAMP))
 
 .PHONY: clean
 clean:
@@ -155,4 +166,8 @@ $(MD_MDL): out/%.mdl: %.md .mdlrc .mdl.style.rb
 $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 	$(info doing [$@])
 	$(Q)aspell --conf-dir=. --conf=.aspell.conf list < $< | pymakehelper error_on_print sort -u
+	$(Q)pymakehelper touch_mkdir $@
+$(ALL_STAMP): out/%.stamp: % .shellcheckrc
+	$(info doing [$@])
+	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
 	$(Q)pymakehelper touch_mkdir $@

@@ -1,0 +1,13 @@
+services:
+  server:
+    image: ubuntu:latest
+    networks:
+      - my-internal-network
+  hacker:
+    image: ubuntu:latest
+    networks:
+      - my-internal-network
+
+networks:
+   my-internal-network:
+     internal: true  # Explicitly define as internal network

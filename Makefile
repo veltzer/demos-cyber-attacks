@@ -139,6 +139,11 @@ stats:
 	$(Q)find out -name "*.flake8" | wc -l
 	$(Q)find out -name "*.mypy" | wc -l
 
+.PHONY: spell_many
+spell_many:
+	$(info doing [$@])
+	$(Q)aspell_many.sh $(MD_SRC)
+
 ############
 # patterns #
 ############

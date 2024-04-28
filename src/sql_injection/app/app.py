@@ -7,12 +7,11 @@ A web server suffering from injection problems
 
 import os
 import flask
-from flaskext.mysql import MySQL
+# from sqlalchemy import create_engine
 import mysql.connector
 from yattag import Doc, indent
 
 
-DO_MYSQL = True
 host = os.environ["env_db_host"]
 user = os.environ["env_db_user"]
 password = os.environ["env_db_password"]
@@ -21,6 +20,15 @@ print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
+
+def get_connection():
+    connection = mysql.connector.connect(
+        user=user,
+        password=password,
+        host=host,
+        database=database,
+    )
+    return connection
 
 
 def describe_table_data(conn, table_name):
@@ -114,7 +122,15 @@ app.config["MYSQL_DATABASE_USER"] = user
 app.config["MYSQL_DATABASE_PASSWORD"] = password
 app.config["MYSQL_DATABASE_DB"] = database
 app.config["MYSQL_POOL_SIZE"] = 10
-pool = MySQL(app)
+uri = f"mysql+mysqlconnector://{user}:{password}@{host}/{database}"
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
+# Optional: Set pool size (default 5)
+app.config['SQLALCHEMY_POOL_SIZE'] = 20
+# Optional: Set pool recycle time (default None)
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 300
+# db = SQLAlchemy(app)
+# pool = MySQL(app)
+# engine = create_engine(uri)
 
 
 @app.route("/")
@@ -126,7 +142,7 @@ def index():
 @app.route("/listbooks")
 def listbooks():
     """ This will list all books in the database """
-    with pool.connect() as conn:
+    with get_connection() as conn:
         return describe_table_data_html(conn, "books")
 
 

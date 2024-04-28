@@ -1,0 +1,8 @@
+flask
+# requests
+mysql-connector-python
+# gunicorn
+yattag
+# flask-mysql
+# Flask-SQLAlchemy
+# sqlalchemy

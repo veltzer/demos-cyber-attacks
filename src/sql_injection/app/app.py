@@ -169,14 +169,18 @@ def addbook():
         genre = request.args.get("genre")
         year = request.args.get("year")
 
-        # SQL query to insert book data into the database
-        query = "INSERT INTO books (title, author, genre, year) \
-                VALUES (%s, %s, %s, %s)"
-        values = (title, author, genre, year)
-        logger.debug(values)
         cursor = conn.cursor()
-        cursor.execute(query, values)
-        conn.commit()
+        if False:
+            query = "INSERT INTO books (title, author, genre, year) \
+                    VALUES (%s, %s, %s, %s)"
+            values = (title, author, genre, year)
+            cursor.execute(query, values)
+        else:
+            query = f"INSERT INTO books (title, author, genre, year) \
+                VALUES ('{title}', '{author}', '{genre}', {year})"
+            logger.debug(query)
+            cursor.execute(query, multi=True)
+            conn.commit()
         return "Book added successfully"
 
 

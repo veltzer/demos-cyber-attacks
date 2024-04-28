@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql
+    image: mysql:latest
     restart: unless-stopped
     env_file:
       - .env

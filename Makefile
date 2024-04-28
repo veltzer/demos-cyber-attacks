@@ -50,7 +50,7 @@ MD_BAS:=$(basename $(MD_SRC))
 MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
-ALL_SH:=$(shell find src -name "*.bash")
+ALL_SH:=$(shell find src -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 
 ifeq ($(DO_SYNTAX),1)

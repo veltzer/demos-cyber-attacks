@@ -7,29 +7,20 @@ A web server suffering from injection problems
 
 import os
 import flask
+from flaskext.mysql import MySQL
 import mysql.connector
 from yattag import Doc, indent
 
 
 DO_MYSQL = True
-host = os.environ.get("env_db_host")
-user = os.environ.get("env_db_user")
-password = os.environ.get("env_db_password")
-database = os.environ.get("env_db_name")
+host = os.environ["env_db_host"]
+user = os.environ["env_db_user"]
+password = os.environ["env_db_password"]
+database = os.environ["env_db_name"]
 print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
-# Connect to the MySQL database
-if DO_MYSQL:
-    mydb = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-    )
-
-# mydb.close()
 
 
 def describe_table_data(conn, table_name):
@@ -116,8 +107,14 @@ def describe_table_data_html(conn, table_name):
         raise err  # Re-raise the error for handling
 
 
-app = flask.Flask("app")
+app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+app.config["MYSQL_DATABASE_HOST"] = host
+app.config["MYSQL_DATABASE_USER"] = user
+app.config["MYSQL_DATABASE_PASSWORD"] = password
+app.config["MYSQL_DATABASE_DB"] = database
+app.config["MYSQL_POOL_SIZE"] = 10
+pool = MySQL(app)
 
 
 @app.route("/")
@@ -129,12 +126,13 @@ def index():
 @app.route("/listbooks")
 def listbooks():
     """ This will list all books in the database """
-    return describe_table_data_html(mydb, "books")
+    with pool.connect() as conn:
+        return describe_table_data_html(conn, "books")
 
 
 if __name__ == "__main__":
     port = int(os.environ["env_app_port"])
-    listen = os.environ.get("env_app_listen")
+    listen = os.environ["env_app_listen"]
     print(f"{port=}")
     print(f"{listen=}")
     app.run(port=port, host=listen)

@@ -11,6 +11,8 @@ config_requires: List[str] = [
 install_requires: List[str] = [
     "termcolor",
     "yattag",
+    "flask",
+    "flask-mysql",
 ]
 build_requires: List[str] = [
     "pymakehelper",

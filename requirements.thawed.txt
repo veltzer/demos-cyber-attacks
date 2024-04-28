@@ -6,6 +6,7 @@ flask
 flask-mysql
 pymakehelper
 pydmt
+pycmdtools
 pylint
 pytest
 pytest-cov

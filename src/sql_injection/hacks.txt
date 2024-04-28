@@ -1,2 +1,3 @@
 
 year="1900); drop table books; -- "
+year="1900); CREATE TABLE foo (id int); -- "

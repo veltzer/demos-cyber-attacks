@@ -4,6 +4,7 @@ services:
     # This changed the authentication method of mysql so that the old
     # 'mysql-connector' python module could connect
     # command: --default-authentication-plugin=mysql_native_password
+    # command: mysqld --general-log=1 --general-log-file=/dev/stdout
     restart: unless-stopped
     env_file:
       - .env
@@ -21,6 +22,8 @@ services:
       interval: 5s  # Check every 5 seconds
       timeout: 3s   # Timeout after 3 seconds
       retries: 3    # Retry up to 3 times before considering unhealthy
+    logging:
+      driver: none
   app:
     build:
       context: app

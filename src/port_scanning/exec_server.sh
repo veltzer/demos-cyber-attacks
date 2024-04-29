@@ -1,2 +1,2 @@
 #!/bin/bash -e
-docker-compose exec -it hacker bash
+docker-compose exec hacker bash

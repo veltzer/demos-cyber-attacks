@@ -170,17 +170,20 @@ def addbook():
         genre = request.args.get("genre")
         year = request.args.get("year")
 
-        cursor = conn.cursor()
-        if SAFE:
-            query = "INSERT INTO books (title, author, genre, year) \
-                    VALUES (%s, %s, %s, %s)"
-            values = (title, author, genre, year)
-            cursor.execute(query, values)
-        else:
-            query = f"INSERT INTO books (title, author, genre, year) \
-                VALUES ('{title}', '{author}', '{genre}', {year})"
-            logger.debug(query)
-            cursor.execute(query, multi=True)
+        with conn.cursor() as cursor:
+            conn.start_transaction()
+            if SAFE:
+                query = "INSERT INTO books (title, author, genre, year) \
+                        VALUES (%s, %s, %s, %s)"
+                values = (title, author, genre, year)
+                cursor.execute(query, values)
+            else:
+                query = f"INSERT INTO books (title, author, genre, year) \
+                    VALUES ('{title}', '{author}', '{genre}', {year})"
+                logger.debug(query)
+                iterator = cursor.execute(query, multi=True)
+                for _ in iterator:
+                    pass
             conn.commit()
         return "Book added successfully"
 

@@ -1,3 +1,0 @@
-[mysqld]
-general-log=ON
-general_log_file=/dev/stdout

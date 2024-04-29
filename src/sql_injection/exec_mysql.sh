@@ -1,2 +1,2 @@
 #!/bin/bash -e
-docker-compose exec mymysql /bin/bash
+docker-compose exec mysql /bin/bash

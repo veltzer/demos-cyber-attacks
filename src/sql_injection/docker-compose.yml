@@ -3,15 +3,16 @@ services:
     image: mysql:latest
     # This changed the authentication method of mysql so that the old
     # 'mysql-connector' python module could connect
-    command: --default-authentication-plugin=mysql_native_password
+    # command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     env_file:
       - .env
     ports:
-      - "${env_db_port}:${env_db_port}"
+      - "${env_db_port_int}:${env_db_port_ext}"
     environment:
       MYSQL_ROOT_PASSWORD: ${env_db_password}
       MYSQL_DATABASE: ${env_db_name}
+      MYSQL_LOG: 1
     volumes:
       - ./mysql_data:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql

@@ -1,5 +1,3 @@
-USE books;
-
 INSERT INTO books (title, author, genre, year) VALUES
     ('To Kill a Mockingbird', 'Harper Lee', 'Fiction', 1960),
     ('1984', 'George Orwell', 'Dystopian', 1949),

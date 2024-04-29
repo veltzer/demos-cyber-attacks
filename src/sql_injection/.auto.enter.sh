@@ -3,5 +3,5 @@ env_db_user="root"
 env_db_password=$(pass show "passwords/${site}/${env_db_user}")
 export env_db_user
 export env_db_password
-env_db_name="books"
+env_db_name="demodb"
 export env_db_name

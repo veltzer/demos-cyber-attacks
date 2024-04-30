@@ -1,1 +1,3 @@
 do more sql injection examples and more documentation on it.
+add cut n pase example of injections right on the page of adding a new book
+do search and add different types of injections on that.

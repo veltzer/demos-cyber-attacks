@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy to Clipboard</title>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-</head>
-<body>
-
-    <div id="sentence">This is a simple sentence in English.</div>
-
-    <button id="copyButton">Copy to Clipboard</button>
-
-    <script>
-        $(document).ready(function () {
-            $("#copyButton").click(function () {
-                var sentenceElement = document.getElementById("sentence");
-                var range = document.createRange();
-                range.selectNode(sentenceElement);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
-                document.execCommand("copy");
-                window.getSelection().removeAllRanges();
-                // alert("Sentence copied to clipboard!");
-            });
-        });
-    </script>
-    <button><a href="/">Back to index</a></button>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Copy to Clipboard</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<div id="sentence">This is a simple sentence in English.</div>
+		<button id="copyButton">Copy to Clipboard</button>
+		<script>
+			$(document).ready(function () {
+				$("#copyButton").click(function () {
+					var sentenceElement = document.getElementById("sentence");
+					var range = document.createRange();
+					range.selectNode(sentenceElement);
+					window.getSelection().removeAllRanges();
+					window.getSelection().addRange(range);
+					document.execCommand("copy");
+					window.getSelection().removeAllRanges();
+					// alert("Sentence copied to clipboard!");
+				});
+			});
+		</script>
+		<button><a href="/">Back to index</a></button>
+	</body>
 </html>

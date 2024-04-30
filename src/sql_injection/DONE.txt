@@ -2,3 +2,6 @@ setup framework for mysql and app
 added data to mysql
 made the app run under gunicorn
 solve the fact that I have the init.sh script here from the root container.
+do one endpoint with injection and one without.
+write the adding of a book and see that it works.
+add the option to reset the database to it's original form from the UI.

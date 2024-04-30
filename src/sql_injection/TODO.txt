@@ -1,3 +1,0 @@
-write the adding of a book and see that it works.
-do one endpoint with injection and one without.
-add the option to reset the database to it's original form from the UI.

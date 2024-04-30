@@ -22,7 +22,6 @@ print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
 print(f"{database=}")
-SAFE = False
 
 # create a logger
 logger = logging.getLogger(__name__)
@@ -169,14 +168,17 @@ def addbook():
         author = request.args.get("author")
         genre = request.args.get("genre")
         year = request.args.get("year")
+        safe = request.args.get("safe")
 
         with conn.cursor() as cursor:
             conn.start_transaction()
-            if SAFE:
+            if safe:
                 query = "INSERT INTO books (title, author, genre, year) \
                         VALUES (%s, %s, %s, %s)"
                 values = (title, author, genre, year)
-                cursor.execute(query, values)
+                iterator = cursor.execute(query, values)
+                for _ in iterator:
+                    pass
             else:
                 query = f"INSERT INTO books (title, author, genre, year) \
                     VALUES ('{title}', '{author}', '{genre}', {year})"

@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
@@ -159,6 +159,17 @@ def listbooks():
         return describe_table_data_html(conn, "books")
 
 
+@app.route("/reset")
+def reset():
+    """ This will recreate the database """
+    # with get_connection() as conn:
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(dir_path, "sql/reset.sql")
+    with open(file_path, "r", encoding="utf8") as file:
+        contents = file.read()
+    return contents
+
+
 @app.route("/addbook")
 def addbook():
     """ This will add a new book to the database """
@@ -181,7 +192,7 @@ def addbook():
                     pass
             else:
                 query = f"INSERT INTO books (title, author, genre, year) \
-                    VALUES ('{title}', '{author}', '{genre}', {year})"
+                    VALUES (\"{title}\", \"{author}\", \"{genre}\", {year})"
                 logger.debug(query)
                 iterator = cursor.execute(query, multi=True)
                 for _ in iterator:

@@ -19,6 +19,8 @@ DO_MD_MDL:=1
 DO_MD_ASPELL:=1
 # do you want to check bash syntax?
 DO_CHECK_SYNTAX:=1
+# do you want to do htmlhint?
+DO_HTMLHINT:=1
 
 ########
 # CODE #
@@ -52,6 +54,13 @@ MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
 ALL_SH:=$(shell find src -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
+
+ALL_HTML:=$(shell find src -name "*.html")
+ALL_HTMLHINT:=$(addprefix out/,$(addsuffix .htmlhint, $(basename $(ALL_HTML))))
+
+ifeq ($(DO_HTMLHINT),1)
+ALL+=$(ALL_HTMLHINT)
+endif # DO_HTMLHINT
 
 ifeq ($(DO_SYNTAX),1)
 ALL+=$(ALL_SYNTAX)
@@ -118,6 +127,8 @@ debug:
 	$(info MD_MDL is $(MD_MDL))
 	$(info ALL_SH is $(ALL_SH))
 	$(info ALL_STAMP is $(ALL_STAMP))
+	$(info ALL_HTML is $(ALL_HTML))
+	$(info ALL_HTMLHINT is $(ALL_HTMLHINT))
 
 .PHONY: clean
 clean:
@@ -175,4 +186,8 @@ $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 $(ALL_STAMP): out/%.stamp: % .shellcheckrc
 	$(info doing [$@])
 	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
+	$(Q)pymakehelper touch_mkdir $@
+$(ALL_HTMLHINT): out/%.htmlhint: %.html .htmlhintrc
+	$(info doing [$@])
+	$(Q)pymakehelper only_print_on_error node_modules/.bin/htmlhint $<
 	$(Q)pymakehelper touch_mkdir $@

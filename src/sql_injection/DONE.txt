@@ -1,3 +1,4 @@
 setup framework for mysql and app
 added data to mysql
 made the app run under gunicorn
+solve the fact that I have the init.sh script here from the root container.

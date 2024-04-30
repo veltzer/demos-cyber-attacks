@@ -15,13 +15,12 @@ services:
       MYSQL_DATABASE: ${env_db_name}
       MYSQL_LOG: 1
     volumes:
-      - ./mysql_data:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
-    # healthcheck:
-    #  test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
-    #  interval: 5s  # Check every 5 seconds
-    #  timeout: 3s   # Timeout after 3 seconds
-    #  retries: 3    # Retry up to 3 times before considering unhealthy
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 5s  # Check every 5 seconds
+      timeout: 3s   # Timeout after 3 seconds
+      retries: 3    # Retry up to 3 times before considering unhealthy
   app:
     build:
       context: app
@@ -35,8 +34,8 @@ services:
     ports:
       - "${env_app_port}:${env_app_port}"
     depends_on:
-      - mysql
-        # condition: service_healthy
+      mysql:
+        condition: service_healthy
 
 volumes:
   db-data:

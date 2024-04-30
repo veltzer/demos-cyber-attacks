@@ -162,12 +162,18 @@ def listbooks():
 @app.route("/reset")
 def reset():
     """ This will recreate the database """
-    # with get_connection() as conn:
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "sql/reset.sql")
     with open(file_path, "r", encoding="utf8") as file:
         contents = file.read()
-    return contents
+    with get_connection() as conn:
+        with conn.cursor() as cursor:
+            conn.start_transaction()
+            iterator = cursor.execute(contents, multi=True)
+            for _ in iterator:
+                pass
+            conn.commit()
+    return "OK"
 
 
 @app.route("/addbook")

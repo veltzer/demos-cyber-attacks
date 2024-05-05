@@ -13,14 +13,14 @@ docker run -tid\
 	--name server\
 	--sysctl "net.ipv4.tcp_syncookies=0"\
 	--network flood\
-	syn_flood_attack_server
+	server
 docker run -tid\
 	--rm\
 	--name client\
 	--network flood\
-	syn_flood_attack_client
+	client
 docker run -tid\
 	--rm\
 	--name hacker\
 	--network flood\
-	syn_flood_attack_hacker
+	hacker

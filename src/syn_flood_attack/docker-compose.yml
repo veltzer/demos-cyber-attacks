@@ -2,15 +2,23 @@ services:
   server:
     build:
       context: server
-    image: ubuntu:latest
     networks:
       - my-internal-network
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
   hacker:
     build:
       context: hacker
-    image: ubuntu:latest
     networks:
       - my-internal-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
 
 networks:
    my-internal-network:

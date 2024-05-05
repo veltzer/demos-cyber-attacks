@@ -100,7 +100,7 @@ const u8* construct_packet(in_addr_t saddr, in_addr_t daddr) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
+    if (argc != 3) {
 	fprintf(stderr, "usage: host port\n");
 	return 1;
     }

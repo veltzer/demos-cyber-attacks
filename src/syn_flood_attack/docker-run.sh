@@ -1,6 +1,6 @@
 #!/bin/bash -e
 docker kill server client hacker || true
-docker network rm flood
+docker network rm flood || true
 docker network create\
 	--attachable\
 	--subnet=172.28.0.0/16\

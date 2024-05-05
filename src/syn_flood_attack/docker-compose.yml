@@ -19,7 +19,12 @@ services:
       resources:
         limits:
           cpus: '2.0'
+  client:
+    build:
+      context: client
+    networks:
+      - my-internal-network
 
 networks:
    my-internal-network:
-     internal: true
+     driver: bridge

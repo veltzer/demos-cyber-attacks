@@ -23,4 +23,6 @@ docker run -tid\
 	--rm\
 	--name hacker\
 	--network flood\
+	--cap-add CAP_NET_RAW\
+	--privileged\
 	hacker

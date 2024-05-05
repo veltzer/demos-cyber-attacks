@@ -135,8 +135,14 @@ int main(int argc, char *argv[]) {
         //Send the packet
         if (sendto(s, pkt, tot_len, 0, (struct sockaddr *)&sin, sizeof(sin)) < 0)
         {
-            // Not a fatal error
-        }
+		perror("this is the error");
+		return 1;
+		printf("E");
+		fflush(stdout);
+        } else {
+		printf(".");
+		fflush(stdout);
+	}
 
         saddr = htonl((u32)random());
         close(s);

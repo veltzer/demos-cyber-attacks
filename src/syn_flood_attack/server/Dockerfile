@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends python3-pip python3-virtualenv
 
 RUN virtualenv /venv

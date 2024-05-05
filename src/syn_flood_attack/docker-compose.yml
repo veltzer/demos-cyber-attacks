@@ -1,0 +1,17 @@
+services:
+  server:
+    build:
+      context: server
+    image: ubuntu:latest
+    networks:
+      - my-internal-network
+  hacker:
+    build:
+      context: hacker
+    image: ubuntu:latest
+    networks:
+      - my-internal-network
+
+networks:
+   my-internal-network:
+     internal: true

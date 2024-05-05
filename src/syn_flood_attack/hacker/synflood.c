@@ -100,23 +100,19 @@ const u8* construct_packet(in_addr_t saddr, in_addr_t daddr) {
 }
 
 int main(int argc, char *argv[]) {
-
-    in_addr_t daddr = 0;
-
-    if (argc > 1) {
-        printf("Dest addr: %s:80\n", argv[1]);
-        daddr = inet_addr(argv[1]);
-    } else {
-        puts("Dest addr: 202.38.64.1:80");
-        daddr = inet_addr("202.38.64.1");
+    if (argc != 2) {
+	fprintf(stderr, "usage: host port\n");
+	return 1;
     }
+    in_addr_t daddr = inet_addr(argv[1]);
+    int port = atoi(argv[2]);
 
     srandom((u32)time(NULL));
     in_addr_t saddr = htonl((u32)random());
 
     struct sockaddr_in sin;
     sin.sin_family = AF_INET;
-    sin.sin_port = htons(80);
+    sin.sin_port = htons(port);
     sin.sin_addr.s_addr = daddr;
 
     u16 tot_len = sizeof(struct ip) + sizeof(struct tcphdr);

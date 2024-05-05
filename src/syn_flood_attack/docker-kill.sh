@@ -1,0 +1,2 @@
+#!/bin/bash -e
+docker kill server client hacker || true

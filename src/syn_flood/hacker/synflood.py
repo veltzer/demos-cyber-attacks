@@ -59,11 +59,36 @@ def syn_flood(dst_ip, dst_port, counter, six: bool):
 def main():
     """ main entry point """
     parser = ArgumentParser()
-    parser.add_argument("--target", "-t", help="target IP address", default="server")
-    parser.add_argument("--port", "-p", help="target port number", default="8080")
-    parser.add_argument("--count", "-c", help="number of packets", default="1000000")
-    parser.add_argument("--format", "-f", help="format of target (4/6 4 is default)", default="4")
-    parser.add_argument("--version", "-v", action="version", version="Python SynFlood Tool v2.0.1")
+    parser.add_argument(
+            "--target",
+            "-t",
+            help="target IP address",
+            default="server",
+    )
+    parser.add_argument(
+            "--port",
+            "-p",
+            help="target port number",
+            default="8080",
+    )
+    parser.add_argument(
+            "--count",
+            "-c",
+            help="number of packets",
+            default="1000000",
+    )
+    parser.add_argument(
+            "--format",
+            "-f",
+            help="format of target (4/6 4 is default)",
+            default="4",
+    )
+    parser.add_argument(
+            "--version",
+            "-v",
+            action="version",
+            version="Python SynFlood Tool v2.0.1",
+    )
     parser.epilog = f"Usage: {sys.argv[0]} -t 10.20.30.40 -p 8080 -c 1 -f 6"
 
     args = parser.parse_args()

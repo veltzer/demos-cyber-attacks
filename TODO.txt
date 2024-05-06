@@ -1,0 +1,3 @@
+python check everything
+md check everything
+shell check everything

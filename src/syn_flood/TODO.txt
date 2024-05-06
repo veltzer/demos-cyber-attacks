@@ -1,0 +1,4 @@
+- do printing of dots (".") for every attack.
+- show cpu utilization rising.
+- show attack with and without tcp_syncookies.
+- get to working version with C and not just python.

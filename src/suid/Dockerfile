@@ -1,7 +1,7 @@
 FROM ubuntu
 RUN apt-get -yq update
 RUN apt-get -yq dist-upgrade
-RUN apt-get -yq install strace
+RUN apt-get -yq install strace adduser
 
 # copy finger and mark it suid
 COPY finger.elf /usr/bin/finger

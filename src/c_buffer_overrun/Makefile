@@ -1,6 +1,10 @@
-all: main.normal.elf main.without-protector.elf
+all: main.exposed.elf main.stack-protector.elf main.stack-protector-all.elf main.stack-protector-strong.elf
 
-main.normal.elf: main.c
-	gcc -o $@ $< -fno-stack-protector
-main.without-protector.elf: main.c
-	gcc -o $@ $<
+main.exposed.elf: main.c
+	gcc -fno-stack-protector -o $@ $<
+main.stack-protector.elf: main.c
+	gcc -fstack-protector -o $@ $<
+main.stack-protector-all.elf: main.c
+	gcc -fstack-protector-all -o $@ $<
+main.stack-protector-strong.elf: main.c
+	gcc -fstack-protector-strong -o $@ $<

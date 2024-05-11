@@ -13,6 +13,7 @@ install_requires: List[str] = [
     "yattag",
     "flask",
     "flask-mysql",
+    "scapy",
 ]
 build_requires: List[str] = [
     "pymakehelper",

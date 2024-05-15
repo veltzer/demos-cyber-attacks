@@ -4,6 +4,7 @@ termcolor
 yattag
 flask
 flask-mysql
+scapy
 pymakehelper
 pydmt
 pycmdtools

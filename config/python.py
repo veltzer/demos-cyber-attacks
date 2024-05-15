@@ -14,6 +14,7 @@ install_requires: List[str] = [
     "flask",
     "flask-mysql",
     "scapy",
+    "mysql.connector",
 ]
 build_requires: List[str] = [
     "pymakehelper",

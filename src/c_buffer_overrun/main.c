@@ -4,11 +4,12 @@
 void greet(char *name) {
 	char password[20]="very_secret";
 	char buffer[20]; // Fixed-size buffer
+	printf("password before copy is %s\n", password);
 	strcpy(buffer, name); // Potentially overflows buffer if name is too long
-	printf("Hello, %s!\n", buffer);
-	printf("password is %s!\n", password);
-	printf("buffer is %p\n", buffer);
-	printf("password is %p\n", password);
+	printf("password after copy is %s\n", password);
+	//printf("Hello, %s!\n", buffer);
+	//printf("buffer is %p\n", buffer);
+	//printf("password is %s\n", password);
 }
 
 void rstrip(char* str) {

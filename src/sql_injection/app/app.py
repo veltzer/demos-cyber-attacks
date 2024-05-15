@@ -6,6 +6,7 @@ A web server suffering from injection problems
 
 
 import os
+import subprocess
 import logging
 import flask
 from flask import request
@@ -205,6 +206,15 @@ def addbook():
                     pass
             conn.commit()
         return "Book added successfully"
+
+
+@app.route("/do_something")
+def do_something():
+    """ do something with the shell """
+    param = request.args.get("param")
+    return subprocess.check_output(f"ffmpeg {param}", shell=True)
+    # os.system(f"ffmpeg {param}")
+    # return "<html><body>OK</body></html>"
 
 
 if __name__ == "__main__":

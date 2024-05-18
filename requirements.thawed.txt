@@ -5,6 +5,7 @@ yattag
 flask
 flask-mysql
 scapy
+mysql.connector
 pymakehelper
 pydmt
 pycmdtools

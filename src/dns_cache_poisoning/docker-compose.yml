@@ -1,0 +1,45 @@
+services:
+  dns:
+    build: ./dns
+    container_name: dns
+    networks:
+      test_net:
+        ipv4_address: 10.0.0.2
+    volumes:
+        - ./dns:/src
+    tty: true
+
+  victim:
+    build: ./victim
+    container_name: victim
+    networks:
+      test_net:
+        ipv4_address: 10.0.0.3
+    tty: true
+
+  attacker:
+    build: ./attacker
+    container_name: attacker
+    volumes:
+        - ./attacker:/src
+    networks:
+      test_net:
+        ipv4_address: 10.0.0.4
+    tty: true
+
+  upstream_dns:
+    build: ./upstream_dns
+    container_name: upstream_dns
+    volumes:
+        - ./upstream_dns:/src
+    networks:
+      test_net:
+        ipv4_address: 10.0.0.5
+    tty: true
+
+networks:
+  test_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24

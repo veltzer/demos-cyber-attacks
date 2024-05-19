@@ -6,7 +6,7 @@ from gevent.server import DatagramServer
 from gevent import socket
 from random import randint
 
-ns = '10.0.0.5'
+ns = "10.0.0.5"
 
 
 class Cache:
@@ -46,7 +46,7 @@ class DNSServer(DatagramServer):
 
             address = (ns, 53)
             sock = socket.socket(type=socket.SOCK_DGRAM)
-            sock.bind(('10.0.0.2', 22222))
+            sock.bind(("10.0.0.2", 22222))
             sock.connect(address)
             sock.send(request.pack())
 
@@ -63,16 +63,14 @@ class DNSServer(DatagramServer):
                 response.header.id = qid
                 print(response)
                 self.socket.sendto(response.pack(), address)
-            
 
     def handle(self, data, address):
-
         self.handle_dns_request(data, address)
 
 
 def main():
-    DNSServer('10.0.0.2:53').serve_forever()
+    """ main entry point """
+    DNSServer("10.0.0.2:53").serve_forever()
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

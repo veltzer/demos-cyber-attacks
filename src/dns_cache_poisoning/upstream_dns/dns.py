@@ -1,40 +1,46 @@
 #!/usr/bin/env python3
 
+"""
+A DNS cache poisoning attacker demo
+"""
 
-from dnslib import *
-import gevent
-from gevent.server import DatagramServer
-from gevent import socket
-from random import randint
+
 from time import sleep
+import dnslib
+from gevent.server import DatagramServer
+# from gevent import socket
+# from random import randint
 
-always_respond_ip = '1.2.3.4'
+ALWAYS_RESPOND_IP = "1.2.3.4"
 
 class DNSServer(DatagramServer):
+    """ This is the DNS server """
 
     def handle_dns_request(self, data, address):
+        """ This actually handles DNS requests """
 
-        req = DNSRecord.parse(data)
+        req = dnslib.DNSRecord.parse(data)
         qname = str(req.q.qname)
         qid = req.header.id
 
-        response = DNSRecord(DNSHeader(qr=1, aa=1, ra=1),
-                                     q=DNSQuestion(qname),
-                                     a=RR(qname, rdata=A(always_respond_ip)))
+        response = dnslib.DNSRecord(dnslib.DNSHeader(qr=1, aa=1, ra=1),
+                                     q=dnslib.DNSQuestion(qname),
+                                     a=dnslib.RR(qname, rdata=dnslib.A(ALWAYS_RESPOND_IP)))
 
         response.header.id = qid
         sleep(1.5)
         self.socket.sendto(response.pack(), address)
-            
+
 
     def handle(self, data, address):
-
+        """ handle of generic requests """
         self.handle_dns_request(data, address)
 
 
 def main():
-    DNSServer(':53').serve_forever()
+    """ main entry point """
+    DNSServer(":53").serve_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

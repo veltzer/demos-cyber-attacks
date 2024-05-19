@@ -6,6 +6,8 @@ flask
 flask-mysql
 scapy
 mysql.connector
+gevent
+dnslib
 pymakehelper
 pydmt
 pycmdtools

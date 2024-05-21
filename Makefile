@@ -162,7 +162,7 @@ $(ALL_SYNTAX): out/%.syntax: %.py
 	$(info doing [$@])
 	$(Q)pycmdtools python_check_syntax $<
 	$(Q)pymakehelper touch_mkdir $@
-$(ALL_LINT): out/%.lint: %.py
+$(ALL_LINT): out/%.lint: %.py .pylintrc
 	$(info doing [$@])
 	$(Q)PYTHONPATH=python python -m pylint --reports=n --score=n $<
 	$(Q)pymakehelper touch_mkdir $@

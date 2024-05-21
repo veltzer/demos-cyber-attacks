@@ -1,10 +1,9 @@
- # -*- coding: UTF-8 -*-
+#!/usr/bin/env python3
 
+from random import randint
 import dnslib
-import gevent
 from gevent.server import DatagramServer
 from gevent import socket
-from random import randint
 
 ns = "10.0.0.5"
 
@@ -18,6 +17,7 @@ class Cache:
 
     def set(self, key, value):
         self.list[key] = value
+
 
 cache = Cache()
 
@@ -50,11 +50,11 @@ class DNSServer(DatagramServer):
             sock.connect(address)
             sock.send(request.pack())
 
-            dns_response, dns_address = sock.recvfrom(8192)
+            dns_response, _dns_address = sock.recvfrom(8192)
             response = dnslib.DNSRecord.parse(dns_response)
 
             while response.header.id != qid_to_request:
-                dns_response, dns_address = sock.recvfrom(8192)
+                dns_response, _dns_address = sock.recvfrom(8192)
                 response = dnslib.DNSRecord.parse(dns_response)
 
             if response.header.id == qid_to_request:
@@ -64,13 +64,14 @@ class DNSServer(DatagramServer):
                 print(response)
                 self.socket.sendto(response.pack(), address)
 
-    def handle(self, data, address):
-        self.handle_dns_request(data, address)
+    # def handle(self, data, address):
+    #     self.handle_dns_request(data, address)
 
 
 def main():
     """ main entry point """
     DNSServer("10.0.0.2:53").serve_forever()
+
 
 if __name__ == "__main__":
     main()

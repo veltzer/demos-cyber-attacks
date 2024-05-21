@@ -1,5 +1,4 @@
-DNS Cache Poisoning Attack Demo
-===============================
+# DNS Cache Poisoning Attack Demo
 
 This is based on [link](https://github.com/zphw/dns-cache-poisoning-demo)
 
@@ -17,6 +16,7 @@ You will need Docker and Docker Compose installed for this project.
 docker-compose build
 docker-compose up
 ```
+
 Upon running, the DNS resolver and upstream DNS server will start listening on port 53.
 
 ### Attack
@@ -83,7 +83,8 @@ The adversary first sends a DNS query to the DNS cache server (`10.0.0.2`), so t
 
 An attack script (`/attacker/attack.py`) is thereby created.
 
-#### Usage:
+#### Usage
+
 ```bash
 python attack.py [target domain] [spoofed IP]
 ```

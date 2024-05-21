@@ -7,7 +7,7 @@ This project is to investigate and reproduce the DNS Cache Poisoning Attack with
 
 ## Quickstart
 
-### Prerequisities
+### Prerequisites
 
 You will need Docker and Docker Compose installed for this project.
 

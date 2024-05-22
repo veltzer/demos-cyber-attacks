@@ -5,8 +5,6 @@ An example of an unrestricted file download
 """
 
 
-import sys
-import requests
 import flask
 
 
@@ -32,7 +30,7 @@ def root():
 def add():
     file = flask.request.args.get("file")
     with open(file, "rt") as s:
-        content=s.read()
+        content = s.read()
     print(content)
     return content
 

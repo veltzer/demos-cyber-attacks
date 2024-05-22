@@ -8,6 +8,14 @@ Show this demo once with
 
 and once with them turned on.
 
+## How to demo
+
+Go into the client and run `./measure.py`.
+
+Go into the hacker and run `./synflood.py`
+
+Go into the server and run `netstat -nt4 | grep "SYN_RECV"`
+
 ## Links
 * [link](https://github.com/Hypro999/synflood.c/tree/master/src)
 * [link](https://github.com/EmreOvunc/Python-SYN-Flood-Attack-Tool/tree/master)

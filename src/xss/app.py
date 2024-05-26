@@ -6,7 +6,6 @@ Web server that can add two numbers
 
 
 import sys
-import requests
 import flask
 import html
 

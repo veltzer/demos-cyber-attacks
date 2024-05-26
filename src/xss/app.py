@@ -8,6 +8,7 @@ Web server that can add two numbers
 import sys
 import requests
 import flask
+import html
 
 
 FORM = """
@@ -63,6 +64,7 @@ def view():
 def add():
     """ this will add two numbers given to it """
     value = flask.request.form.get("value")
+    value = html.escape(value)
     with open("chat.txt", "at") as stream:
         stream.write("<br/>")
         stream.write(value)

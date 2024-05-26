@@ -1,4 +1,1 @@
-<br/>This is a comment from mark<br/><br/>This is a comment from doron<br/><br/><script>
-        alert("I got your browser")
-</script>
-<br/>
+<br/>Hello how are you<br/><br/>&lt;script&gt;alert(&quot;got your browser!&quot;)&lt;/script&gt;<br/>

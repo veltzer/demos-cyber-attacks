@@ -12,6 +12,7 @@ app = Flask("app")
 
 
 @app.route("/")
+@limiter.limit("5 per minute")  # Route-specific limit
 def root():
     """ catch all urls """
     return "<html><body><h1>python with flask in a docker<h1></body><html>"

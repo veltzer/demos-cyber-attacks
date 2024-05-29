@@ -6,13 +6,19 @@ Super simple web server
 
 from flask import Flask
 from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 
 app = Flask("app")
-
+# limiter = Limiter(app)
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,  # Limit by IP address
+    default_limits=["200 per day", "50 per hour"]  # Global limits
+)
 
 @app.route("/")
-@limiter.limit("5 per minute")  # Route-specific limit
+@limiter.limit("500/minute")
 def root():
     """ catch all urls """
     return "<html><body><h1>python with flask in a docker<h1></body><html>"

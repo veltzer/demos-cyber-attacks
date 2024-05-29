@@ -13,6 +13,7 @@ echo "ip is $ip"
 docker run -tid\
 	--rm\
 	--name client\
+	"--add-host=server.com:${ip}" \
 	--network common\
 	client
 docker run -tid\

@@ -1,2 +1,2 @@
 #!/bin/bash -e
-curl "http://server:8080/"
+curl "http://server.com:8080/"

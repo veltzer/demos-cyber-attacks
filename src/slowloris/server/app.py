@@ -5,6 +5,7 @@ Super simple web server
 """
 
 from flask import Flask
+from flask_limiter import Limiter
 
 
 app = Flask("app")

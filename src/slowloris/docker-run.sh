@@ -8,6 +8,8 @@ docker run -tid\
 	--name server\
 	--network common\
 	server
+ip=$(docker inspect --format "{{ .NetworkSettings.Networks.common.IPAddress }}" server)
+echo "ip is $ip"
 docker run -tid\
 	--rm\
 	--name client\
@@ -16,5 +18,6 @@ docker run -tid\
 docker run -tid\
 	--rm\
 	--name hacker\
+	"--add-host=server.com:${ip}" \
 	--network common\
 	hacker

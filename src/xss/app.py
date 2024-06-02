@@ -23,12 +23,12 @@ FORM = """
 
 ROOT = """
 <!DOCTYPE html>
-<html>
-	<body>
-        Welcome to our chat!</br>
-		<a href="comment">Add a comment</a>
-		<a href="view">View Chat</a>
-	</body>
+  <html>
+    <body>
+      Welcome to our chat!</br>
+      <a href="comment">Add a comment</a>
+      <a href="view">View Chat</a>
+  </body>
 </html>
 """
 

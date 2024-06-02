@@ -12,10 +12,11 @@ from flask_limiter.util import get_remote_address
 app = Flask("app")
 # limiter = Limiter(app)
 limiter = Limiter(
-    app,
     key_func=get_remote_address,  # Limit by IP address
-    default_limits=["200 per day", "50 per hour"]  # Global limits
+    # app,
+    # default_limits=["200 per day", "50 per hour"]  # Global limits
 )
+
 
 @app.route("/")
 @limiter.limit("500/minute")

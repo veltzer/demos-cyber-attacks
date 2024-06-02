@@ -18,6 +18,7 @@ install_requires: List[str] = [
     "mysql.connector",
     "gevent",
     "dnslib",
+    "pyslowloris",
 ]
 build_requires: List[str] = [
     "pymakehelper",

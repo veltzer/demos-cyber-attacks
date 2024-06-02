@@ -4,10 +4,12 @@ termcolor
 yattag
 flask
 flask-mysql
+Flask-Limiter
 scapy
 mysql.connector
 gevent
 dnslib
+pyslowloris
 pymakehelper
 pydmt
 pycmdtools

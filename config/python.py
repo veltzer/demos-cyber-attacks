@@ -13,6 +13,7 @@ install_requires: List[str] = [
     "yattag",
     "flask",
     "flask-mysql",
+    "Flask-Limiter",
     "scapy",
     "mysql.connector",
     "gevent",

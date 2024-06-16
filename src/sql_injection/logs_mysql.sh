@@ -1,2 +1,2 @@
 #!/bin/bash -e
-docker-compose logs -f mysql
+docker compose logs -f mysql

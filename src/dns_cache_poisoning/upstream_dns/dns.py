@@ -32,9 +32,10 @@ class DNSServer(DatagramServer):
         sleep(1.5)
         self.socket.sendto(response.pack(), address)
 
-    # def handle(self, data, address):
-    #     """ handle of generic requests """
-    #     self.handle_dns_request(data, address)
+    # pylint: disable=method-hidden
+    def handle(self, data, address):
+        """ handle of generic requests """
+        self.handle_dns_request(data, address)
 
 
 def main():

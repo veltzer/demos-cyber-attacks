@@ -64,8 +64,9 @@ class DNSServer(DatagramServer):
                 print(response)
                 self.socket.sendto(response.pack(), address)
 
-    # def handle(self, data, address):
-    #     self.handle_dns_request(data, address)
+    # pylint: disable=method-hidden
+    def handle(self, data, address):
+        self.handle_dns_request(data, address)
 
 
 def main():

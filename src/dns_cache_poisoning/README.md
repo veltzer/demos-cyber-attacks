@@ -13,8 +13,8 @@ You will need Docker and Docker Compose installed for this project.
 ### Build
 
 ```bash
-docker-compose build
-docker-compose up
+docker compose build
+docker compose up
 ```
 
 Upon running, the DNS resolver and upstream DNS server will start listening on port 53.

@@ -6,7 +6,7 @@ docker network create flood
 docker run -tid\
 	--rm\
 	--name server\
-	--sysctl "net.ipv4.tcp_syncookies=0"\
+	--sysctl "net.ipv4.tcp_syncookies=1"\
 	--network flood\
 	server
 docker run -tid\

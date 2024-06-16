@@ -6,4 +6,6 @@ packages=[
     # ruby stuff
     "ruby-bundler",
     "rbenv",
+    # the right package for docker compose
+    "docker-compose-v2",
 ]

@@ -1,7 +1,15 @@
-all: main.exposed.elf main.stack-protector.elf main.stack-protector-all.elf main.stack-protector-strong.elf simple.exposed.elf
+all:\
+	main.exposed.elf\
+	main.stack-protector.elf\
+	main.stack-protector-all.elf\
+	main.stack-protector-strong.elf\
+	main.default.elf\
+	simple.exposed.elf
 
 main.exposed.elf: main.c
 	gcc -fno-stack-protector -o $@ $<
+main.default.elf: main.c
+	gcc -o $@ $<
 main.stack-protector.elf: main.c
 	gcc -fstack-protector -o $@ $<
 main.stack-protector-all.elf: main.c
@@ -10,3 +18,7 @@ main.stack-protector-strong.elf: main.c
 	gcc -fstack-protector-strong -o $@ $<
 simple.exposed.elf: simple.c
 	gcc -Wno-stringop-overflow -o $@ $<
+
+.PHONY: clean
+clean:
+	rm -f *.elf

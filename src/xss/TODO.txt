@@ -1,0 +1,1 @@
+add a checkbox in the GUI to say if to sanitize or not.

@@ -4,6 +4,8 @@ This is based on [link](https://github.com/zphw/dns-cache-poisoning-demo)
 
 This project is to investigate and reproduce the DNS Cache Poisoning Attack within an isolated network environment using docker. The demo shows an adversary to spoof the DNS answer of google.com and direct to the adversary's malicious IP address.
 
+In this case we bring up a DNS server which insists that "google.com" is 1.2.3.4 and we spoof it to "5.6.7.8".
+
 ## Quickstart
 
 ### Prerequisites
@@ -30,7 +32,7 @@ docker exec -it attacker bash
 #### 2. Launch the attack script
 
 ```bash
-python attack.py google.com 10.0.0.4
+./attack.py google.com 5.6.7.8
 ```
 
 #### 3. Impact

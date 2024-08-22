@@ -30,6 +30,7 @@ def main():
     window = []  # Stores elapsed times for the last window_size requests
     start_time = time.time()
 
+    i = 0
     while True:
         elapsed_time = fetch_url(url)
         if elapsed_time is not None:
@@ -38,9 +39,10 @@ def main():
                 window.pop(0)  # Maintain a fixed window size
 
             average_time = sum(window) / len(window)
-            print(f"{window_size} requests: {average_time:.3f} s")
+            print(f"{i}: {window_size} requests: {average_time:.3f} s")
         # Wait for one second before the next request
         time.sleep(1 - (time.time() - start_time) % 1)
+        i = i + 1
 
 
 if __name__ == "__main__":

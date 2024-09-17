@@ -1,5 +1,5 @@
 ##############
-# PARAMETERS #
+# parameters #
 ##############
 # do you want to see the commands executed ?
 DO_MKDBG:=0
@@ -23,7 +23,7 @@ DO_CHECK_SYNTAX:=1
 DO_HTMLHINT:=1
 
 ########
-# CODE #
+# code #
 ########
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -91,7 +91,7 @@ ALL+=$(ALL_STAMP)
 endif # DO_CHECK_SYNTAX
 
 #########
-# RULES #
+# rules #
 #########
 .PHONY: all
 all: $(ALL)

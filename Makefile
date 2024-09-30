@@ -41,7 +41,7 @@ endif # DO_ALLDEP
 
 ALL_PACKAGES:=$(dir $(wildcard */__init__.py))
 ALL:=
-ALL_PY:=$(shell find src -name "*.py")
+ALL_PY:=$(shell find src -type f -and -name "*.py")
 ALL_SYNTAX:=$(addprefix out/,$(addsuffix .syntax, $(basename $(ALL_PY))))
 ALL_LINT:=$(addprefix out/,$(addsuffix .lint, $(basename $(ALL_PY))))
 ALL_FLAKE8:=$(addprefix out/,$(addsuffix .flake8, $(basename $(ALL_PY))))
@@ -52,10 +52,10 @@ MD_BAS:=$(basename $(MD_SRC))
 MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
-ALL_SH:=$(shell find src -name "*.sh")
+ALL_SH:=$(shell find src -type f -and -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 
-ALL_HTML:=$(shell find src -name "*.html")
+ALL_HTML:=$(shell find src -type f -and -name "*.html")
 ALL_HTMLHINT:=$(addprefix out/,$(addsuffix .htmlhint, $(basename $(ALL_HTML))))
 
 ifeq ($(DO_HTMLHINT),1)
@@ -145,10 +145,10 @@ part_flake8: $(ALL_FLAKE8)
 
 .PHONY: stats
 stats:
-	$(Q)find out -name "*.syntax" | wc -l
-	$(Q)find out -name "*.lint" | wc -l
-	$(Q)find out -name "*.flake8" | wc -l
-	$(Q)find out -name "*.mypy" | wc -l
+	$(Q)find out -type f -and -name "*.syntax" | wc -l
+	$(Q)find out -type f -and -name "*.lint" | wc -l
+	$(Q)find out -type f -and -name "*.flake8" | wc -l
+	$(Q)find out -type f -and -name "*.mypy" | wc -l
 
 .PHONY: spell_many
 spell_many:

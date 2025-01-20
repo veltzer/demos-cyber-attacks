@@ -40,4 +40,4 @@ version: 0.0.1
 ![discord](https://img.shields.io/discord/719336281624281119)
 ![discord](https://img.shields.io/discord/719336282194444302)
 
-Mark Veltzer, Copyright © 2024
+Mark Veltzer, Copyright © 2024, 2025

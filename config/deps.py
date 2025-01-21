@@ -24,4 +24,5 @@ if VERSION_ID == "22.04":
     packages_remove.append("containerd.io")
 if VERSION_ID == "24.04":
     # because of conflict with containerd which is needed by "docker.io" below
-    packages_remove.append("containerd.io")
+    # packages_remove.append("containerd.io")
+    pass

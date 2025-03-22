@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+DNS server which is attacked
+"""
+
 from random import randint
 import dnslib
 from gevent.server import DatagramServer

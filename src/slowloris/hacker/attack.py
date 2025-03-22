@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Attacker in the slowloris vector
+"""
+
 from pyslowloris import HostAddress, SlowLorisAttack
 
 url = HostAddress.from_url("http://server.com:8080")

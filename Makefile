@@ -9,8 +9,6 @@ DO_ALLDEP:=1
 DO_SYNTAX:=1
 # do you want to lint python files?
 DO_LINT:=1
-# do you want to lint python files using flake8?
-DO_FLAKE8:=1
 # do you want to lint python files using mypy?
 DO_MYPY:=1
 # do you want to run mdl on md files?
@@ -39,7 +37,6 @@ ALL:=
 ALL_PY:=$(shell find src -type f -and -name "*.py")
 ALL_SYNTAX:=$(addprefix out/,$(addsuffix .syntax, $(basename $(ALL_PY))))
 ALL_LINT:=$(addprefix out/,$(addsuffix .lint, $(basename $(ALL_PY))))
-ALL_FLAKE8:=$(addprefix out/,$(addsuffix .flake8, $(basename $(ALL_PY))))
 ALL_MYPY:=$(addprefix out/,$(addsuffix .mypy, $(basename $(ALL_PY))))
 
 MD_SRC:=$(shell find src -type f -and -name "*.md")
@@ -64,10 +61,6 @@ endif # DO_SYNTAX
 ifeq ($(DO_LINT),1)
 ALL+=$(ALL_LINT)
 endif # DO_LINT
-
-ifeq ($(DO_FLAKE8),1)
-ALL+=$(ALL_FLAKE8)
-endif # DO_FLAKE8
 
 ifeq ($(DO_MYPY),1)
 ALL+=$(ALL_MYPY)
@@ -113,7 +106,6 @@ debug:
 	$(info ALL_PY is $(ALL_PY))
 	$(info ALL_SYNTAX is $(ALL_SYNTAX))
 	$(info ALL_LINT is $(ALL_LINT))
-	$(info ALL_FLAKE8 is $(ALL_FLAKE8))
 	$(info ALL_MYPY is $(ALL_MYPY))
 	$(info ALL is $(ALL))
 	$(info MD_SRC is $(MD_SRC))
@@ -135,14 +127,10 @@ clean_hard:
 	$(info doing [$@])
 	$(Q)git clean -qffxd
 
-.PHONY: part_flake8
-part_flake8: $(ALL_FLAKE8)
-
 .PHONY: stats
 stats:
 	$(Q)find out -type f -and -name "*.syntax" | wc -l
 	$(Q)find out -type f -and -name "*.lint" | wc -l
-	$(Q)find out -type f -and -name "*.flake8" | wc -l
 	$(Q)find out -type f -and -name "*.mypy" | wc -l
 
 .PHONY: spell_many
@@ -160,10 +148,6 @@ $(ALL_SYNTAX): out/%.syntax: %.py
 $(ALL_LINT): out/%.lint: %.py .pylintrc
 	$(info doing [$@])
 	$(Q)PYTHONPATH=python python -m pylint --reports=n --score=n $<
-	$(Q)pymakehelper touch_mkdir $@
-$(ALL_FLAKE8): out/%.flake8: %.py
-	$(info doing [$@])
-	$(Q)python -m flake8 $<
 	$(Q)pymakehelper touch_mkdir $@
 $(ALL_MYPY): out/%.mypy: %.py
 	$(info doing [$@])

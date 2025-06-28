@@ -12,7 +12,7 @@ pylogconf
 pymakehelper
 pyslowloris
 pytest
-pytest-cov
+ruff
 scapy
 termcolor
 types-termcolor

@@ -165,7 +165,7 @@ def reset():
     """ This will recreate the database """
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "sql/reset.sql")
-    with open(file_path, "r", encoding="utf8") as file:
+    with open(file_path, encoding="utf8") as file:
         contents = file.read()
     with get_connection() as conn:
         with conn.cursor() as cursor:

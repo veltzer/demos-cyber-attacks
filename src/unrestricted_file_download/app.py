@@ -29,7 +29,7 @@ def root():
 @app.route("/download")
 def add():
     file = flask.request.args.get("file")
-    with open(file, "rt") as s:
+    with open(file) as s:
         content = s.read()
     return content
 

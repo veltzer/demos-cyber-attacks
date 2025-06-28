@@ -1,14 +1,6 @@
-from typing import List
+""" python deps for this project """
 
-
-dev_requires: List[str] = [
-    "pypitools",
-    "black",
-]
-config_requires: List[str] = [
-    "pyclassifiers",
-]
-install_requires: List[str] = [
+install_requires: list[str] = [
     "termcolor",
     "yattag",
     "flask",
@@ -19,21 +11,18 @@ install_requires: List[str] = [
     "gevent",
     "dnslib",
     "pyslowloris",
+    "pylogconf",
 ]
-build_requires: List[str] = [
-    "pymakehelper",
+build_requires: list[str] = [
     "pydmt",
-    "pycmdtools",
+    "pymakehelper",
 ]
-test_requires: List[str] = [
+test_requires: list[str] = [
     "pylint",
     "pytest",
     "pytest-cov",
-    "flake8",
-    "pyflakes",
     "mypy",
-    "pylogconf",
+    # types
     "types-termcolor",
-    "types-PyYAML",
 ]
-requires = config_requires + install_requires + build_requires + test_requires
+requires = install_requires + build_requires + test_requires

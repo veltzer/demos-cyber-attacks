@@ -52,7 +52,7 @@ def comment():
 def view():
     """ view url """
     val = "<html><body>This is the view:"
-    with open("chat.txt", "rt") as stream:
+    with open("chat.txt") as stream:
         val += stream.read()
     val += "</body></html>"
     return val
@@ -63,7 +63,7 @@ def add():
     """ this will add two numbers given to it """
     value = flask.request.form.get("value")
     value = html.escape(value)
-    with open("chat.txt", "at") as stream:
+    with open("chat.txt", "a") as stream:
         stream.write("<br/>")
         stream.write(value)
         stream.write("<br/>")

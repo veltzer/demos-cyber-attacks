@@ -15,5 +15,6 @@ pytest
 ruff
 scapy
 termcolor
+types-requests
 types-termcolor
 yattag

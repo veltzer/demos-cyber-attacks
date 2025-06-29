@@ -24,5 +24,6 @@ test_requires: list[str] = [
     "ruff",
     # types
     "types-termcolor",
+    "types-requests",
 ]
 requires = install_requires + build_requires + test_requires

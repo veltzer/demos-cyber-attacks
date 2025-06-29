@@ -6,6 +6,7 @@ flask-mysql
 gevent
 mypy
 mysql.connector
+pycmdtools
 pydmt
 pylint
 pylogconf

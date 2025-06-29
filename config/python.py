@@ -16,6 +16,7 @@ install_requires: list[str] = [
 build_requires: list[str] = [
     "pydmt",
     "pymakehelper",
+    "pycmdtools",
 ]
 test_requires: list[str] = [
     "pylint",

@@ -1,5 +1,7 @@
 """ python deps for this project """
 
+import config.shared
+
 install_requires: list[str] = [
     "termcolor",
     "yattag",
@@ -13,18 +15,10 @@ install_requires: list[str] = [
     "pyslowloris",
     "pylogconf",
 ]
-build_requires: list[str] = [
-    "pydmt",
-    "pymakehelper",
-    "pycmdtools",
-]
-test_requires: list[str] = [
-    "pylint",
-    "pytest",
-    "mypy",
-    "ruff",
-    # types
+build_requires: list[str] = config.shared.BUILD
+test_requires: list[str] = config.shared.TEST
+types_requires: list[str] = [
     "types-termcolor",
     "types-requests",
 ]
-requires = install_requires + build_requires + test_requires
+requires = install_requires + build_requires + test_requires + types_requires

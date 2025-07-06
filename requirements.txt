@@ -71,7 +71,7 @@ requests==2.32.4
 rich==13.9.4
 roman-numerals-py==3.1.0
 rpds-py==0.26.0
-ruff==0.12.1
+ruff==0.12.2
 scapy==2.6.1
 setuptools==80.9.0
 sh==1.14.3
@@ -94,7 +94,7 @@ tqdm==4.67.1
 trio==0.25.1
 types-requests==2.32.4.20250611
 types-termcolor==1.1.6.2
-typing-extensions==4.14.0
+typing-extensions==4.14.1
 tzdata==2025.2
 unidecode==1.4.0
 urllib3==2.5.0

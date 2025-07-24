@@ -4,7 +4,7 @@ attrs==25.3.0
 babel==2.17.0
 beautifulsoup4==4.13.4
 blinker==1.9.0
-certifi==2025.6.15
+certifi==2025.7.14
 charset-normalizer==3.4.2
 click==8.2.1
 deprecated==1.2.18
@@ -17,7 +17,7 @@ flask-limiter==3.12
 flask-mysql==1.6.0
 gevent==25.5.1
 gitdb==4.0.12
-gitpython==3.1.44
+gitpython==3.1.45
 greenlet==3.2.3
 html5lib==1.1
 idna==3.10
@@ -29,7 +29,7 @@ jinja2==3.1.6
 jk-exceptionhelper==0.2024.10.25
 jk-logging==0.2025.5.17
 jk-triologging==0.2019.10.19
-jsonschema==4.24.0
+jsonschema==4.25.0
 jsonschema-specifications==2025.4.1
 limits==5.4.0
 logging-tree==1.10
@@ -52,7 +52,7 @@ platformdirs==4.3.8
 pluggy==1.6.0
 pyclassifiers==0.0.20
 pycmdtools==0.0.85
-pydmt==0.3.26
+pydmt==0.3.27
 pyfakeuse==0.0.9
 pygments==2.19.2
 pylint==3.3.7
@@ -94,7 +94,7 @@ tqdm==4.67.1
 trio==0.25.1
 types-requests==2.32.4.20250611
 types-termcolor==1.1.6.2
-typing-extensions==4.14.0
+typing-extensions==4.14.1
 tzdata==2025.2
 unidecode==1.4.0
 urllib3==2.5.0

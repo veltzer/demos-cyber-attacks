@@ -67,7 +67,7 @@ pytidylib==0.3.2
 pytz==2025.2
 pyyaml==6.0.2
 referencing==0.36.2
-requests==2.32.4
+requests==2.32.5
 rich==13.9.4
 roman-numerals-py==3.1.0
 rpds-py==0.27.0
@@ -94,7 +94,7 @@ tqdm==4.67.1
 trio==0.25.1
 types-requests==2.32.4.20250809
 types-termcolor==1.1.6.2
-typing-extensions==4.14.1
+typing-extensions==4.15.0
 tzdata==2025.2
 unidecode==1.4.0
 urllib3==2.5.0

@@ -149,9 +149,15 @@ $(ALL_LINT): out/%.lint: %.py .pylintrc
 	$(info doing [$@])
 	$(Q)PYTHONPATH=python python -m pylint --reports=n --score=n $<
 	$(Q)pymakehelper touch_mkdir $@
+# Each file gets its own --cache-dir. pydmt sets MAKEFLAGS=-j$(nproc) under
+# GitHub Actions only, so in CI these rules run concurrently and every mypy
+# shared the one default .mypy_cache. mypy's record_missing_stub_packages()
+# opens .mypy_cache/missing_stubs for writing at the end of a run, which dies
+# with FileNotFoundError when a sibling mypy has just replaced the directory
+# underneath it — a CI-only failure that never reproduces on a serial build.
 $(ALL_MYPY): out/%.mypy: %.py
 	$(info doing [$@])
-	$(Q)pymakehelper only_print_on_error mypy $<
+	$(Q)pymakehelper only_print_on_error mypy --cache-dir=out/.mypy_cache/$* $<
 	$(Q)pymakehelper touch_mkdir $@
 $(MD_MDL): out/%.mdl: %.md .mdlrc .mdl.style.rb
 	$(info doing [$@])

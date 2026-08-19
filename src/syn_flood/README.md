@@ -17,8 +17,8 @@ Go into the hacker and run `./synflood.py`
 Go into the server and run `netstat -nt4 | grep "SYN_RECV"`
 
 ## Links
-* [link](https://github.com/Hypro999/synflood.c/tree/master/src)
-* [link](https://github.com/EmreOvunc/Python-SYN-Flood-Attack-Tool/tree/master)
-* [link](https://hub.docker.com/r/knight42/synflood)
-* [link](https://github.com/knight42/synflood-play)
-* [link](https://github.com/knight42/synflood-demo/tree/master)
+* [Hypro999/synflood.c](https://github.com/Hypro999/synflood.c/tree/master/src)
+* [EmreOvunc/Python-SYN-Flood-Attack-Tool](https://github.com/EmreOvunc/Python-SYN-Flood-Attack-Tool/tree/master)
+* [knight42/synflood (Docker Hub)](https://hub.docker.com/r/knight42/synflood)
+* [knight42/synflood-play](https://github.com/knight42/synflood-play)
+* [knight42/synflood-demo](https://github.com/knight42/synflood-demo/tree/master)

@@ -1,0 +1,27 @@
+# Repo-specific overlay. Deep-merged over the canonical rsconstruct.toml.
+
+# README.md is kept as a static committed file rather than rendered from a
+# template: this repo's pydmt README carried PyPI/codacy/contact sections
+# that the shared demo template does not model, so freezing it preserves the
+# published content exactly.
+[dependencies]
+pip = [
+    "dnslib",
+    "flask",
+    "flask-limiter",
+    "gevent",
+    "mysql-connector-python",
+    "pyslowloris",
+    "requests",
+    "scapy",
+    "yattag",
+]
+
+# Each attack directory carries the same file names (measure.py, app.py,
+# attack.py) so every demo is self-contained; batched mypy maps same-named
+# files to one module and fails with "Duplicate module". Per-file runs keep
+# every per-file check. Some demos import scapy/dnslib/gevent which ship no
+# type stubs; those imports are reported but do not fail our own code.
+[processor.mypy]
+batch = false
+args = ["--ignore-missing-imports"]

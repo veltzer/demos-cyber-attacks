@@ -1,6 +1,6 @@
 # DNS Cache Poisoning Attack Demo
 
-This is based on [link](https://github.com/zphw/dns-cache-poisoning-demo)
+This is based on [zphw/dns-cache-poisoning-demo](https://github.com/zphw/dns-cache-poisoning-demo)
 
 This project is to investigate and reproduce the DNS Cache Poisoning Attack within an isolated network environment using docker. The demo shows an adversary to spoof the DNS answer of google.com and direct to the adversary's malicious IP address.
 
@@ -37,7 +37,7 @@ docker exec -it attacker bash
 
 #### 3. Impact
 
-![](/screenshots/1.png)
+![DNS cache poisoning demo, screenshot 1](/screenshots/1.png)
 
 As the output of the container `dns` shows, a fake DNS record has been successfully written into cache. It can be verified by using dig in the victim's container.
 
@@ -53,7 +53,7 @@ In the container:
 dig google.com
 ```
 
-![](/screenshots/2.png)
+![DNS cache poisoning demo, screenshot 2](/screenshots/2.png)
 
 It shows that in the answer section, the record is pointing to the adversary's IP address (10.0.0.4).
 
@@ -93,4 +93,4 @@ python attack.py [target domain] [spoofed IP]
 
 ## License
 
-This was initially developed for CS 4404 Network Security B20 as a part of Mission 2 for Team 13 and is licensed under the [MIT License](LICENSE). However, you may NOT directly use this repository if you are taking the same course as a student as per Academic Integrity Policy.
+This was initially developed for CS 4404 Network Security B20 as a part of Mission 2 for Team 13 and is licensed under the [MIT License](../../LICENSE). However, you may NOT directly use this repository if you are taking the same course as a student as per Academic Integrity Policy.

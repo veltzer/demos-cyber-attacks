@@ -9,8 +9,9 @@ Python SYN Flood Tool CMD v2.0.1
 
 
 import sys
-from random import randint
 from argparse import ArgumentParser
+from random import randint
+
 import scapy.all
 
 
@@ -30,7 +31,7 @@ def syn_flood(dst_ip, dst_port, counter, six: bool):
     """ syn flood tcpv4/tcpv6 """
     print("Sending Packets...")
 
-    for _ in range(0, counter):
+    for _ in range(counter):
         s_port = rand_int()
         s_eq = rand_int()
         w_indow = rand_int()

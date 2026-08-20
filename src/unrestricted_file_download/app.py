@@ -7,7 +7,6 @@ An example of an unrestricted file download
 
 import flask
 
-
 ROOT = """
 <html><body>
 <a href="/download?file=file1.txt">get file1</a>

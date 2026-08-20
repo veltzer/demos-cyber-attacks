@@ -6,8 +6,8 @@ Web server that can add two numbers
 
 
 import html
-import flask
 
+import flask
 
 FORM = """
 <html>

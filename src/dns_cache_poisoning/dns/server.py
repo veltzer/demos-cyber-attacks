@@ -5,9 +5,10 @@ DNS server which is attacked
 """
 
 from random import randint
+
 import dnslib
-from gevent.server import DatagramServer
 from gevent import socket
+from gevent.server import DatagramServer
 
 ns = "10.0.0.5"
 

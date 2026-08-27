@@ -1,0 +1,23 @@
+# Generated to let `uv sync` install this repo's Python dependencies.
+# The authoritative dependency list is [dependencies].pip in
+# rsconstruct.toml; keep the two in sync when editing.
+
+[project]
+name = "demos-cyber-attacks"
+version = "0.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "dnslib",
+    "flask",
+    "flask-limiter",
+    "gevent",
+    "mysql-connector-python",
+    "pyslowloris",
+    "requests",
+    "scapy",
+    "yattag",
+]
+
+[tool.uv]
+# Demo/teaching repo: not an installable package.
+package = false

@@ -24,9 +24,6 @@ src_dirs = ["src", "config"]
 batch = false
 args = ["--ignore-missing-imports"]
 
-[processor.requirements]
-src_dirs = ["src", "config"]
-
 # ─── shell ───────────────────────────────────────────────────────────────────
 
 [processor.shellcheck]
@@ -46,15 +43,3 @@ src_dirs = ["src"]
 # template: this repo's pydmt README carried PyPI/codacy/contact sections
 # that the shared demo template does not model, so freezing it preserves the
 # published content exactly.
-[dependencies]
-pip = [
-    "dnslib",
-    "flask",
-    "flask-limiter",
-    "gevent",
-    "mysql-connector-python",
-    "pyslowloris",
-    "requests",
-    "scapy",
-    "yattag",
-]

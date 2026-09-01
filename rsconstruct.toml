@@ -22,7 +22,7 @@ src_dirs = ["src", "config"]
 [processor.mypy]
 src_dirs = ["src", "config"]
 batch = false
-args = ["--ignore-missing-imports"]
+args = ["--ignore-missing-imports", "--show-traceback"]
 
 # ─── shell ───────────────────────────────────────────────────────────────────
 

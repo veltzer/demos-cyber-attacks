@@ -13,7 +13,3 @@ ignored:
   # "Multiple consecutive RUN instructions": the Dockerfiles are teaching
   # material where one instruction per step is the point.
   - DL3059
-  # "Delete the apt lists after installing": only coherent when update+install
-  # live in one RUN; these teaching Dockerfiles deliberately keep apt-get update
-  # and install in separate steps (same reason as DL3059 above).
-  - DL3009

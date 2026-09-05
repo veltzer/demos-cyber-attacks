@@ -9,7 +9,7 @@ docker run -tid\
 	--network common\
 	server
 ip=$(docker inspect --format "{{ .NetworkSettings.Networks.common.IPAddress }}" server)
-echo "ip is $ip"
+echo "ip is ${ip}"
 docker run -tid\
 	--rm\
 	--name client\

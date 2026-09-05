@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-void greet(char *name) {
+void greet(const char *name) {
+	// cppcheck-suppress constVariable ; the demo shows this being overwritten by strcpy overflowing buffer
 	char password[20]="very_secret";
 	char buffer[20]; // Fixed-size buffer
 	printf("password before copy is %s\n", password);

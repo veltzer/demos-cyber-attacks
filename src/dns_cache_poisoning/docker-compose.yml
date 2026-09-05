@@ -6,7 +6,7 @@ services:
       test_net:
         ipv4_address: 10.0.0.2
     volumes:
-        - ./dns:/src
+      - ./dns:/src
     tty: true
 
   victim:
@@ -21,7 +21,7 @@ services:
     build: ./attacker
     container_name: attacker
     volumes:
-        - ./attacker:/src
+      - ./attacker:/src
     networks:
       test_net:
         ipv4_address: 10.0.0.4
@@ -31,7 +31,7 @@ services:
     build: ./upstream_dns
     container_name: upstream_dns
     volumes:
-        - ./upstream_dns:/src
+      - ./upstream_dns:/src
     networks:
       test_net:
         ipv4_address: 10.0.0.5

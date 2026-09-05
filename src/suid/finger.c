@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <limits.h>
 
-void print_file_content(char *file_path) {
+void print_file_content(const char *file_path) {
     FILE *file = fopen(file_path, "r");
     if (file == NULL) {
         return;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i++) {
         char *username = argv[i];
-        struct passwd *user_entry = getpwnam(username);
+        const struct passwd *user_entry = getpwnam(username);
 
         if (user_entry == NULL) {
             printf("User '%s' not found.\n", username);

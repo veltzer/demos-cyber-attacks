@@ -1,7 +1,7 @@
-FROM ubuntu
+FROM ubuntu:24.04
 RUN apt-get -yq update
 RUN apt-get -yq dist-upgrade
-RUN apt-get -yq install strace adduser
+RUN apt-get -yq install --no-install-recommends strace adduser && rm -rf /var/lib/apt/lists/*
 
 # copy finger and mark it suid
 COPY finger.elf /usr/bin/finger
@@ -9,7 +9,7 @@ RUN chmod +s /usr/bin/finger
 
 # add the mark accout with secret file
 RUN adduser mark
-COPY --chown=mark:mark --chmod=600:600 secret_file.txt /home/mark 
+COPY --chown=mark:mark --chmod=600:600 secret_file.txt /home/mark
 
 # add the hacker account
 RUN adduser hacker

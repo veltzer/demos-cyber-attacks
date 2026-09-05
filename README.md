@@ -32,8 +32,6 @@ version: 0.0.1
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/demos-cyber-attacks)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/demos-cyber-attacks)
 
-
-
 ## contact me
 [mailto](mailto:mark.veltzer@gmail.com)
 ![gitter](https://img.shields.io/gitter/room/veltzer/mark.veltzer)

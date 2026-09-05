@@ -6,6 +6,7 @@
 
 [processor.rumdl]
 src_dirs = ["src"]
+src_files = ["README.md"]
 
 [processor.zspell]
 src_dirs = ["src"]
@@ -27,7 +28,6 @@ args = ["--ignore-missing-imports", "--show-traceback"]
 
 [processor.shellcheck]
 src_dirs = ["src", "config"]
-args = ["--severity=error", "--shell=bash"]
 
 [processor.taplo]
 src_dirs = ["."]
@@ -46,3 +46,28 @@ src_dirs = ["src"]
 # lint the GitHub Actions workflow files with actionlint
 [processor.actionlint]
 src_dirs = [".github/workflows"]
+
+# ─── yaml ────────────────────────────────────────────────────────────────────
+
+[processor.yamllint]
+src_dirs = ["src"]
+
+# ─── docker ──────────────────────────────────────────────────────────────────
+
+[processor.hadolint]
+src_dirs = ["src"]
+
+# ─── json ────────────────────────────────────────────────────────────────────
+
+[processor.ijsonlint]
+src_files = ["package.json"]
+
+# ─── c / c++ ─────────────────────────────────────────────────────────────────
+
+[processor.cppcheck]
+src_dirs = ["src"]
+args = [
+	"--error-exitcode=1",
+	"--enable=warning,style,performance,portability",
+	"--inline-suppr",
+]

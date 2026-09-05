@@ -119,12 +119,11 @@ int main(int argc, char *argv[]) {
 
     const u8* pkt = NULL;
 
-    i32 s = 0;
     i8 on = 1;
 
     for (;;) {
 
-        s = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+        i32 s = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
         if (setsockopt(s, IPPROTO_IP, IP_HDRINCL,
             (i8*)&on, sizeof(on)) == -1)
         {
@@ -137,8 +136,6 @@ int main(int argc, char *argv[]) {
         {
 		perror("this is the error");
 		return 1;
-		printf("E");
-		fflush(stdout);
         } else {
 		printf(".");
 		fflush(stdout);

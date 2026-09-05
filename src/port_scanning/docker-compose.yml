@@ -9,5 +9,5 @@ services:
       - my-internal-network
 
 networks:
-   my-internal-network:
-     internal: true  # Explicitly define as internal network
+  my-internal-network:
+    internal: true  # Explicitly define as internal network

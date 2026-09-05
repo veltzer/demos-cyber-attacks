@@ -28,6 +28,9 @@ args = ["--ignore-missing-imports", "--show-traceback"]
 
 [processor.shellcheck]
 src_dirs = ["src", "config"]
+# --external-sources lets shellcheck follow the tracked .env that connect.sh
+# and open_app.sh source, so their variables are seen as assigned.
+args = ["--external-sources"]
 
 [processor.taplo]
 src_dirs = ["."]

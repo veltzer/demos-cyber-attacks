@@ -1,7 +1,8 @@
 FROM ubuntu:24.04
-RUN apt-get -yq update
-RUN apt-get -yq dist-upgrade
-RUN apt-get -yq install --no-install-recommends strace adduser && rm -rf /var/lib/apt/lists/*
+RUN apt-get -yq update && \
+    apt-get -yq dist-upgrade && \
+    apt-get -yq install --no-install-recommends strace adduser && \
+    rm -rf /var/lib/apt/lists/*
 
 # copy finger and mark it suid
 COPY finger.elf /usr/bin/finger

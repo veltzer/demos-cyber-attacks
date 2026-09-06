@@ -1,8 +1,9 @@
 FROM ubuntu:24.04
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends python3-pip python3-virtualenv net-tools && rm -rf /var/lib/apt/lists/*
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get --yes upgrade && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends python3-pip python3-virtualenv net-tools && \
+    rm -rf /var/lib/apt/lists/*
 
 # This does not work
 # RUN sysctl -w net.ipv4.tcp_syncookies=0

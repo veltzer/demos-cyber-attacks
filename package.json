@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "htmlhint": "latest",
-    "htmllint-cli": "latest"
+    "htmlhint": "latest"
   }
 }

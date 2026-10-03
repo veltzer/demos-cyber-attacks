@@ -44,9 +44,6 @@ args = ["--external-sources"]
 [processor.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
-[processor.htmlhint]
-src_dirs = ["src"]
-
 [processor.tidy]
 src_dirs = ["src"]
 

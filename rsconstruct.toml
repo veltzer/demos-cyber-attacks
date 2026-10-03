@@ -69,11 +69,6 @@ src_dirs = ["src"]
 [processor.hadolint]
 src_dirs = ["src"]
 
-# ─── json ────────────────────────────────────────────────────────────────────
-
-[processor.ijsonlint]
-src_files = ["package.json"]
-
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
 [processor.cppcheck]

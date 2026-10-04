@@ -8,20 +8,20 @@ reject_dot_src_dirs = true
 
 [analyzer.python]
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_dirs = ["src"]
 src_files = ["README.md"]
 
-[processor.zspell]
+[processor.checker.zspell]
 src_dirs = ["src"]
 
 # ─── python ──────────────────────────────────────────────────────────────────
 
-[processor.ruff]
+[processor.checker.ruff]
 src_dirs = ["src"]
 
 
-[processor.mypy]
+[processor.checker.mypy]
 src_dirs = ["src"]
 batch = false
 # mypy writes a shared SQLite metadata cache (.mypy_cache). With batch = false
@@ -35,16 +35,16 @@ args = ["--ignore-missing-imports", "--show-traceback"]
 
 # ─── shell ───────────────────────────────────────────────────────────────────
 
-[processor.shellcheck]
+[processor.checker.shellcheck]
 src_dirs = ["src"]
 # --external-sources lets shellcheck follow the tracked .env that connect.sh
 # and open_app.sh source, so their variables are seen as assigned.
 args = ["--external-sources"]
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
-[processor.tidy]
+[processor.checker.tidy]
 src_dirs = ["src"]
 
 # README.md is kept as a static committed file rather than rendered from a
@@ -53,22 +53,22 @@ src_dirs = ["src"]
 # published content exactly.
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── yaml ────────────────────────────────────────────────────────────────────
 
-[processor.yamllint]
+[processor.checker.yamllint]
 src_dirs = ["src"]
 
 # ─── docker ──────────────────────────────────────────────────────────────────
 
-[processor.hadolint]
+[processor.checker.hadolint]
 src_dirs = ["src"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
-[processor.cppcheck]
+[processor.checker.cppcheck]
 src_dirs = ["src"]
 args = [
 	"--error-exitcode=1",

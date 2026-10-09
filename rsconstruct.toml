@@ -21,17 +21,8 @@ src_dirs = ["src"]
 src_dirs = ["src"]
 
 
-[processor.checker.mypy]
+[processor.checker.pyrefly]
 src_dirs = ["src"]
-batch = false
-# mypy writes a shared SQLite metadata cache (.mypy_cache). With batch = false
-# rsconstruct invokes mypy once per file, and running those in parallel makes
-# the processes collide on the cache DB ("database is locked" at
-# PRAGMA journal_mode=WAL). Serialize just this processor so the per-file
-# invocations never write the cache concurrently; every other processor keeps
-# full parallelism.
-max_jobs = 1
-args = ["--ignore-missing-imports", "--show-traceback"]
 
 # ─── shell ───────────────────────────────────────────────────────────────────
 

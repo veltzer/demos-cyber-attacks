@@ -44,7 +44,7 @@ args = ["--external-sources"]
 [processor.checker.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
-[processor.checker.tidy]
+[processor.checker.itidy]
 src_dirs = ["src"]
 
 # README.md is kept as a static committed file rather than rendered from a

@@ -63,7 +63,7 @@ src_dirs = ["src"]
 
 # ─── docker ──────────────────────────────────────────────────────────────────
 
-[processor.checker.hadolint]
+[processor.checker.idockerfile]
 src_dirs = ["src"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────

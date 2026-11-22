@@ -2,7 +2,7 @@
 
 description: Demos of various cyber attacks
 
-project website: https://veltzer.github.io/demos-cyber-attacks
+project website: <https://veltzer.github.io/demos-cyber-attacks>
 
 author: Mark Veltzer
 

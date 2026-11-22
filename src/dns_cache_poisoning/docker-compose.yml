@@ -1,3 +1,4 @@
+---
 services:
   dns:
     build: ./dns

@@ -1,3 +1,4 @@
+---
 services:
   mysql:
     image: mysql_reconfigured

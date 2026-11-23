@@ -30,7 +30,7 @@ struct pseudo_header
     struct tcphdr tcp;
 };
 
-u16 checksum(u16 *ptr, u32 nbytes) {
+static u16 checksum(u16 *ptr, u32 nbytes) {
     u64 sum = 0;
 
     while(nbytes > 1) {
@@ -48,7 +48,7 @@ u16 checksum(u16 *ptr, u32 nbytes) {
     return (u16)~sum;
 }
 
-const u8* construct_packet(in_addr_t saddr, in_addr_t daddr) {
+static const u8* construct_packet(in_addr_t saddr, in_addr_t daddr) {
     #define PKT_LEN 4096
     static u8 pkt[PKT_LEN];
 

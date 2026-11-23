@@ -36,12 +36,10 @@ def syn_flood(dst_ip, dst_port, counter, six: bool):
         s_eq = rand_int()
         w_indow = rand_int()
 
-        # pylint: disable=no-member
         ip_packet = IPv6() if six else IP()
         ip_packet.src = random_ip()
         ip_packet.dst = dst_ip
 
-        # pylint: disable=no-member
         tcp_packet = TCP()
         tcp_packet.sport = s_port
         tcp_packet.dport = int(dst_port)

@@ -189,6 +189,7 @@ dev = [
     { name = "pyrefly" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "types-gevent" },
 ]
 
 [package.metadata]
@@ -209,6 +210,7 @@ dev = [
     { name = "pyrefly" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "types-gevent" },
 ]
 
 [[package]]
@@ -722,6 +724,37 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b9/37/74d6556dda898c0dec707a5877c3d7a12a294682151616cee58643accd17/trio-0.25.1.tar.gz", hash = "sha256:9f5314f014ea3af489e77b001861c535005c3858d38ec46b6b071ebfa339d7fb", size = 553970, upload-time = "2024-05-16T06:31:37.215Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/51/12d78ec8abcbda51d8f115d98ebd3ee3da9d9d9af00ac69d3097c5b8d51a/trio-0.25.1-py3-none-any.whl", hash = "sha256:e42617ba091e7b2e50c899052e83a3c403101841de925187f61e7b7eaebdf3fb", size = 467667, upload-time = "2024-05-16T06:31:34.313Z" },
+]
+
+[[package]]
+name = "types-gevent"
+version = "26.9.0.20261122"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "types-greenlet" },
+    { name = "types-psutil" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/48/ac/7ead7d86f59a8baaccc14c560114d03d1702c851a2fddecc1733faa56073/types_gevent-26.9.0.20261122.tar.gz", hash = "sha256:d9df5cb998689b54049df7177767dd35c0b14ebb77378dfb22a424bca077d938", size = 39331, upload-time = "2026-11-22T09:01:14.917Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/00/b5/cdccc97e8ef07b67cf28ada14d2f98cc6aa18e3acebde3b9caa22722cce8/types_gevent-26.9.0.20261122-py3-none-any.whl", hash = "sha256:598ec3da2815db1a44c7de0b018748309b346f14ce3213ecc9f93acfabb84f66", size = 55804, upload-time = "2026-11-22T09:01:13.785Z" },
+]
+
+[[package]]
+name = "types-greenlet"
+version = "3.5.0.20260518"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/58/ec7e4d35ce36557d7599d347c51632723e5f89af551af776d25bab7c605f/types_greenlet-3.5.0.20260518.tar.gz", hash = "sha256:2abc0b31a60d10244bba4a9f9e5d19b7254749b14ea85cb2f72eef282fab39f4", size = 9084, upload-time = "2026-05-18T06:03:08.352Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4e/1f/112ebbffe68c40af3bca8e948a9d2df66a53dd7b3124e031e3110fcba3e5/types_greenlet-3.5.0.20260518-py3-none-any.whl", hash = "sha256:ce8f2b59314ffd683648d8f7fc1eab7b7a36a0330adb4a054d0a2157b9624166", size = 8816, upload-time = "2026-05-18T06:03:07.06Z" },
+]
+
+[[package]]
+name = "types-psutil"
+version = "7.2.2.20261122"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/af/c3/f2b13b3a78628887c407bee49eed3e8bfb5e23e2e8407c31146269226215/types_psutil-7.2.2.20261122.tar.gz", hash = "sha256:30879c88d871c99f4a632cb17826ce8ec55de2c4884ed84e4f8f293b91c6439e", size = 27671, upload-time = "2026-11-22T09:00:03.397Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/78/da/cc4e00f377450ebc69075f10eea90dce14a534e789426367347e1a1a64b2/types_psutil-7.2.2.20261122-py3-none-any.whl", hash = "sha256:ee60d47cddb6ecace68aeb5326bce47fef706a00f728df7ec27dae31d4ed8472", size = 33505, upload-time = "2026-11-22T09:00:02.507Z" },
 ]
 
 [[package]]

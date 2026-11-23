@@ -68,11 +68,12 @@ src_dirs = ["src"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
+# every .c file is a standalone program with its own main: one run per file
 [processor.checker.cppcheck]
 src_dirs = ["src"]
 args = [
 	"--error-exitcode=1",
-	"--enable=warning,style,performance,portability",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
 	"--check-level=exhaustive",
 	"--inline-suppr",
 ]

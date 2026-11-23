@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void greet(const char *name) {
+static void greet(const char *name) {
 	// cppcheck-suppress constVariable ; the demo shows this being overwritten by strcpy overflowing buffer
 	char password[20]="very_secret";
 	char buffer[20]; // Fixed-size buffer
@@ -13,7 +13,7 @@ void greet(const char *name) {
 	//printf("password is %s\n", password);
 }
 
-void rstrip(char* str) {
+static void rstrip(char* str) {
 	// Get the length of the string (excluding newline)
 	int bytes_read = strlen(str);
 	// Check if newline exists (fgets might not read the entire buffer)

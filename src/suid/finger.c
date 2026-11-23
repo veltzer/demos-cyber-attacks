@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <limits.h>
 
-void print_file_content(const char *file_path) {
+static void print_file_content(const char *file_path) {
     FILE *file = fopen(file_path, "r");
     if (file == NULL) {
         return;

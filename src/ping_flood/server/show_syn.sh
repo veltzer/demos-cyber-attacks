@@ -1,2 +1,2 @@
 #!/bin/bash -e
-netstat -n -p TCP  | grep SYN_RECV
+{ netstat -n -p TCP || true; } | grep SYN_RECV

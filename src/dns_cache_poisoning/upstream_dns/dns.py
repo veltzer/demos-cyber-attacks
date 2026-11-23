@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 A DNS cache poisoning attacker demo
@@ -14,6 +14,9 @@ ALWAYS_RESPOND_IP = "1.2.3.4"
 
 
 class DNSServer(DatagramServer):
+    def __init__(self, listener):
+        super().__init__(listener, handle=self.handle_dns_request)
+
     """ This is the DNS server """
 
     def handle_dns_request(self, data, address):
@@ -32,11 +35,6 @@ class DNSServer(DatagramServer):
         response.header.id = qid
         sleep(1.5)
         self.socket.sendto(response.pack(), address)
-
-    # pylint: disable=method-hidden
-    def handle(self, data, address):
-        """ handle of generic requests """
-        self.handle_dns_request(data, address)
 
 
 def main():

@@ -62,7 +62,7 @@ def view():
 def add():
     """ this will add two numbers given to it """
     value = flask.request.form.get("value")
-    value = html.escape(value)
+    value = html.escape(value or "")
     with open("chat.txt", "a") as stream:
         stream.write("<br/>")
         stream.write(value)

@@ -1,8 +1,8 @@
 # shellcheck shell=bash
 site="mysql"
-env_db_user="root"
-env_db_password=$(pass show "passwords/${site}/${env_db_user}")
-export env_db_user
-export env_db_password
-env_db_name="demodb"
-export env_db_name
+ENV_DB_USER="root"
+ENV_DB_PASSWORD=$(pass show "passwords/${site}/${ENV_DB_USER}")
+export ENV_DB_USER
+export ENV_DB_PASSWORD
+ENV_DB_NAME="demodb"
+export ENV_DB_NAME

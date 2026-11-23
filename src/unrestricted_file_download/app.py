@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 An example of an unrestricted file download
@@ -27,10 +27,9 @@ def root():
 
 @app.route("/download")
 def add():
-    file = flask.request.args.get("file")
+    file = flask.request.args.get("file", "")
     with open(file) as s:
-        content = s.read()
-    return content
+        return s.read()
 
 
 app.run(port=8080, host="0.0.0.0")

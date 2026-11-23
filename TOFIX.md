@@ -13,7 +13,7 @@ Findings from a code scan on 2026-10-04.
 - `src/suid/Dockerfile:12,16` - `adduser mark` / `adduser hacker` are interactive (password and GECOS prompts) and do not work unattended in `docker build`. Use `adduser --disabled-password --gecos "" mark` (same for `hacker`).
 - `src/shell_injection/README.md:5` - describes "an app that allows users to search for files in an archive", but the directory contains only the README; the demo code is missing. Add it (`src/sql_injection/app/app.py:197` `do_something` already has a `shell=True` injection that could be moved/linked here) or remove the directory.
 - `src/xss/app.py:63` - `/add` always runs `html.escape(value)`, so posting `hack.txt` never triggers the XSS the demo is named for; only the mitigated version exists. Add a `safe` toggle like `sql_injection/app/app.py:173` so both the vulnerable and fixed behaviour can be shown.
-- `src/sql_injection/connect.sh:4` - connects as `root` with no password, but `docker-compose.yml:14` sets `MYSQL_ROOT_PASSWORD`, so the login is refused. Pass the password from the `env_db_password` that `.auto.enter.sh` exports (e.g. `MYSQL_PWD="${env_db_password}" mysql ...`).
+- `src/sql_injection/connect.sh:4` - connects as `root` with no password, but `docker-compose.yml:14` sets `MYSQL_ROOT_PASSWORD`, so the login is refused. Pass the password from the `ENV_DB_PASSWORD` that `.auto.enter.sh` exports (e.g. `MYSQL_PWD="${ENV_DB_PASSWORD}" mysql ...`).
 - `src/sql_injection/app/app.py:25` - prints the DB password to stdout (container logs) at startup; this is not part of the SQL-injection lesson. Remove the `print(f"{password=}")`.
 
 ## Low

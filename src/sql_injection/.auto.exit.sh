@@ -1,4 +1,4 @@
 # shellcheck shell=bash
-unset env_db_user
-unset env_db_password
-unset env_db_name
+unset ENV_DB_USER
+unset ENV_DB_PASSWORD
+unset ENV_DB_NAME

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 DNS server which is attacked
@@ -28,6 +28,9 @@ cache = Cache()
 
 
 class DNSServer(DatagramServer):
+    def __init__(self, listener):
+        super().__init__(listener, handle=self.handle_dns_request)
+
 
     def handle_dns_request(self, data, address):
 
@@ -68,10 +71,6 @@ class DNSServer(DatagramServer):
                 response.header.id = qid
                 print(response)
                 self.socket.sendto(response.pack(), address)
-
-    # pylint: disable=method-hidden
-    def handle(self, data, address):
-        self.handle_dns_request(data, address)
 
 
 def main():

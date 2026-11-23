@@ -10,16 +10,16 @@ import subprocess
 GUNICORN = False
 
 if GUNICORN:
-    env_app_port = int(os.environ["env_app_port"])
-    env_app_listen = os.environ.get("env_app_listen")
-    print(f"{env_app_port=}")
-    print(f"{env_app_listen=}")
+    ENV_APP_PORT = int(os.environ["ENV_APP_PORT"])
+    ENV_APP_LISTEN = os.environ.get("ENV_APP_LISTEN")
+    print(f"{ENV_APP_PORT=}")
+    print(f"{ENV_APP_LISTEN=}")
     subprocess.check_call([
         "gunicorn",
         "--config",
         "gunicorn_conf.py",
         "--bind",
-        f"{env_app_listen}:{env_app_port}",
+        f"{ENV_APP_LISTEN}:{ENV_APP_PORT}",
         "wsgi:app",
     ])
 else:

@@ -10,10 +10,10 @@ services:
     env_file:
       - .env
     ports:
-      - "${env_db_port_ext}:${env_db_port_int}"
+      - "${ENV_DB_PORT_EXT}:${ENV_DB_PORT_INT}"
     environment:
-      MYSQL_ROOT_PASSWORD: ${env_db_password}
-      MYSQL_DATABASE: ${env_db_name}
+      MYSQL_ROOT_PASSWORD: ${ENV_DB_PASSWORD}
+      MYSQL_DATABASE: ${ENV_DB_NAME}
       MYSQL_LOG: 1
     volumes:
       - db-data:/var/lib/mysql
@@ -25,10 +25,10 @@ services:
     env_file:
       - .env
     environment:
-      - env_db_password=${env_db_password}
-      - env_db_name=${env_db_name}
+      - ENV_DB_PASSWORD=${ENV_DB_PASSWORD}
+      - ENV_DB_NAME=${ENV_DB_NAME}
     ports:
-      - "${env_app_port}:${env_app_port}"
+      - "${ENV_APP_PORT}:${ENV_APP_PORT}"
     depends_on:
       - mysql
 

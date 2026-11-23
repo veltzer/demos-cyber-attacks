@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 A web server suffering from injection problems
 """
 
 
+import contextlib
 import logging
 import os
 import subprocess
@@ -16,10 +17,10 @@ import mysql.connector
 from flask import request
 from yattag import Doc, indent
 
-host = os.environ["env_db_host"]
-user = os.environ["env_db_user"]
-password = os.environ["env_db_password"]
-database = os.environ["env_db_name"]
+host = os.environ["ENV_DB_HOST"]
+user = os.environ["ENV_DB_USER"]
+password = os.environ["ENV_DB_PASSWORD"]
+database = os.environ["ENV_DB_NAME"]
 print(f"{host=}")
 print(f"{user=}")
 print(f"{password=}")
@@ -37,13 +38,12 @@ logger.addHandler(console_handler)
 
 def get_connection():
     """ get a fresh connection to the database """
-    connection = mysql.connector.connect(
+    return mysql.connector.connect(
         user=user,
         password=password,
         host=host,
         database=database,
     )
-    return connection
 
 
 def describe_table_data(conn, table_name):
@@ -114,8 +114,7 @@ def describe_table_data_html(conn, table_name):
                             text(str(val))
         with tag("buttom"), tag("a", href="/"):
             text("Back to index")
-    pretty_html = indent(doc.getvalue())
-    return pretty_html
+    return indent(doc.getvalue())
     # return doc.getvalue()
 
 app = flask.Flask(__name__)
@@ -145,7 +144,7 @@ def index():
 @app.route("/listbooks")
 def listbooks():
     """ This will list all books in the database """
-    with get_connection() as conn:
+    with contextlib.closing(get_connection()) as conn:
         return describe_table_data_html(conn, "books")
 
 
@@ -156,11 +155,9 @@ def reset():
     file_path = os.path.join(dir_path, "sql/reset.sql")
     with open(file_path, encoding="utf8") as file:
         contents = file.read()
-    with get_connection() as conn, conn.cursor() as cursor:
+    with contextlib.closing(get_connection()) as conn, contextlib.closing(conn.cursor()) as cursor:
         conn.start_transaction()
-        iterator = cursor.execute(contents, multi=True)
-        for _ in iterator:
-            pass
+        cursor.execute(contents)
         conn.commit()
     return "OK"
 
@@ -168,7 +165,7 @@ def reset():
 @app.route("/addbook")
 def addbook():
     """ This will add a new book to the database """
-    with get_connection() as conn:
+    with contextlib.closing(get_connection()) as conn:
         # Get book details from the request
         title = request.args.get("title")
         author = request.args.get("author")
@@ -176,22 +173,18 @@ def addbook():
         year = request.args.get("year")
         safe = request.args.get("safe")
 
-        with conn.cursor() as cursor:
+        with contextlib.closing(conn.cursor()) as cursor:
             conn.start_transaction()
             if safe:
                 query = "INSERT INTO books (title, author, genre, year) \
                         VALUES (%s, %s, %s, %s)"
                 values = (title, author, genre, year)
-                iterator = cursor.execute(query, values)
-                for _ in iterator:
-                    pass
+                cursor.execute(query, values)
             else:
                 query = f"INSERT INTO books (title, author, genre, year) \
                     VALUES (\"{title}\", \"{author}\", \"{genre}\", {year})"
                 logger.debug(query)
-                iterator = cursor.execute(query, multi=True)
-                for _ in iterator:
-                    pass
+                cursor.execute(query)
             conn.commit()
         return "Book added successfully"
 
@@ -206,8 +199,8 @@ def do_something():
 
 
 if __name__ == "__main__":
-    port = int(os.environ["env_app_port"])
-    listen = os.environ["env_app_listen"]
+    port = int(os.environ["ENV_APP_PORT"])
+    listen = os.environ["ENV_APP_LISTEN"]
     print(f"{port=}")
     print(f"{listen=}")
     app.run(port=port, host=listen, debug=True)

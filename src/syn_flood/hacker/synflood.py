@@ -27,7 +27,7 @@ def rand_int():
     return randint(1000, 9000)
 
 
-def syn_flood(dst_ip, dst_port, counter, six: bool):
+def syn_flood(dst_ip, dst_port, counter, *, six: bool):
     """ syn flood tcpv4/tcpv6 """
     print("Sending Packets...")
 
@@ -89,7 +89,7 @@ def main():
 
     args = parser.parse_args()
 
-    syn_flood(args.target, args.port, int(args.count), args.format == "6")
+    syn_flood(args.target, args.port, int(args.count), six=args.format == "6")
 
 
 main()

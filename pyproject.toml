@@ -38,15 +38,6 @@ search-path = [
 ]
 # Loose scripts import their siblings: search each importing file's folder.
 enable-fallback-search-path = true
-# Third-party libraries without type information.
-ignore-missing-imports = [
-    "dnslib.*",
-    "flask_limiter.*",
-    "gevent.*",
-    "mysql.*",
-    "pyslowloris.*",
-    "scapy.*",
-]
 
 [tool.pyrefly.errors]
 no-any-return = "error"

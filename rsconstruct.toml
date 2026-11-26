@@ -78,3 +78,7 @@ args = [
 	"--check-level=exhaustive",
 	"--inline-suppr",
 ]
+
+# lint the Lua configuration with luacheck (policy: .luacheckrc)
+[processor.checker.iluacheck]
+src_dirs = ["config"]

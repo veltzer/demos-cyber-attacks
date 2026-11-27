@@ -9,6 +9,7 @@ import contextlib
 import logging
 import os
 import subprocess
+from typing import TYPE_CHECKING, Any
 
 import flask
 
@@ -16,6 +17,11 @@ import flask
 import mysql.connector
 from flask import request
 from yattag import Doc, indent
+
+if TYPE_CHECKING:
+    from flask.wrappers import Response
+    from mysql.connector.abstracts import MySQLConnectionAbstract
+    from mysql.connector.pooling import PooledMySQLConnection
 
 host = os.environ["ENV_DB_HOST"]
 user = os.environ["ENV_DB_USER"]
@@ -36,7 +42,7 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 
-def get_connection():
+def get_connection() -> MySQLConnectionAbstract | PooledMySQLConnection:
     """ get a fresh connection to the database """
     return mysql.connector.connect(
         user=user,
@@ -46,7 +52,7 @@ def get_connection():
     )
 
 
-def describe_table_data(conn, table_name):
+def describe_table_data(conn: Any, table_name: str) -> str:
     """
     This function describes all data in a MySQL table and
     returns a string.
@@ -75,7 +81,7 @@ def describe_table_data(conn, table_name):
         formatted_row = [str(val) for val in row]
         description_str += " | ".join(formatted_row) + "\n"
     return description_str
-def describe_table_data_html(conn, table_name):
+def describe_table_data_html(conn: Any, table_name: str):
     """
     This function describes all data in a MySQL table and returns HTML code.
     Args:
@@ -136,7 +142,7 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 300
 
 
 @app.route("/")
-def index():
+def index() -> Response:
     """ main route """
     return app.send_static_file("index.html")
 
@@ -149,7 +155,7 @@ def listbooks():
 
 
 @app.route("/reset")
-def reset():
+def reset() -> str:
     """ This will recreate the database """
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "sql/reset.sql")
@@ -163,7 +169,7 @@ def reset():
 
 
 @app.route("/addbook")
-def addbook():
+def addbook() -> str:
     """ This will add a new book to the database """
     with contextlib.closing(get_connection()) as conn:
         # Get book details from the request
@@ -190,7 +196,7 @@ def addbook():
 
 
 @app.route("/do_something")
-def do_something():
+def do_something() -> bytes:
     """ do something with the shell """
     param = request.args.get("param")
     return subprocess.check_output(f"ffmpeg {param}", shell=True)

@@ -6,8 +6,12 @@ Web server that can add two numbers
 
 
 import html
+from typing import TYPE_CHECKING
 
 import flask
+
+if TYPE_CHECKING:
+    from werkzeug.wrappers.response import Response
 
 FORM = """
 <html>
@@ -37,19 +41,19 @@ app = flask.Flask("app")
 
 
 @app.route("/")
-def root():
+def root() -> str:
     """ root url """
     return ROOT
 
 
 @app.route("/comment")
-def comment():
+def comment() -> str:
     """ comment url """
     return FORM
 
 
 @app.route("/view")
-def view():
+def view() -> str:
     """ view url """
     val = "<html><body>This is the view:"
     with open("chat.txt") as stream:
@@ -59,7 +63,7 @@ def view():
 
 
 @app.route("/add", methods=["POST"])
-def add():
+def add() -> Response:
     """ this will add two numbers given to it """
     value = flask.request.form.get("value")
     value = html.escape(value or "")

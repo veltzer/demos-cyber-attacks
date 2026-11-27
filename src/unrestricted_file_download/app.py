@@ -20,13 +20,13 @@ app = flask.Flask("app")
 
 
 @app.route("/")
-def root():
+def root() -> str:
     """ root url """
     return ROOT
 
 
 @app.route("/download")
-def add():
+def add() -> str:
     file = flask.request.args.get("file", "")
     with open(file) as s:
         return s.read()

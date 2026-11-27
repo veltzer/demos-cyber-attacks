@@ -6,6 +6,7 @@ A DNS cache poisoning attacker demo
 
 
 from time import sleep
+from typing import Any
 
 import dnslib
 from gevent.server import DatagramServer
@@ -14,12 +15,14 @@ ALWAYS_RESPOND_IP = "1.2.3.4"
 
 
 class DNSServer(DatagramServer):
-    def __init__(self, listener):
+    def __init__(self, listener: str) -> None:
         super().__init__(listener, handle=self.handle_dns_request)
 
     """ This is the DNS server """
 
-    def handle_dns_request(self, data, address):
+    # gevent types a server's handler for a stream server, which is handed a
+    # socket; a datagram server hands its handler the bytes that arrived
+    def handle_dns_request(self, data: Any, address: tuple[str, int]) -> None:
         """ This actually handles DNS requests """
 
         req = dnslib.DNSRecord.parse(data)
@@ -37,7 +40,7 @@ class DNSServer(DatagramServer):
         self.socket.sendto(response.pack(), address)
 
 
-def main():
+def main() -> None:
     """ main entry point """
     DNSServer(":53").serve_forever()
 

@@ -11,7 +11,7 @@ import time
 import requests
 
 
-def fetch_url(url):
+def fetch_url(url: str) -> float | None:
     """Fetches the URL and returns the elapsed time."""
     start_time = time.time()
     try:

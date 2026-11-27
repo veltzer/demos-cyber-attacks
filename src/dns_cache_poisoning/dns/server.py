@@ -5,6 +5,7 @@ DNS server which is attacked
 """
 
 from random import randint
+from typing import Any
 
 import dnslib
 from gevent import socket
@@ -14,13 +15,13 @@ ns = "10.0.0.5"
 
 
 class Cache:
-    def __init__(self):
+    def __init__(self) -> None:
         self.list = {}
 
-    def get(self, key):
+    def get(self, key: str):
         return self.list.get(key, None)
 
-    def set(self, key, value):
+    def set(self, key: str, value: bytes) -> None:
         self.list[key] = value
 
 
@@ -28,11 +29,13 @@ cache = Cache()
 
 
 class DNSServer(DatagramServer):
-    def __init__(self, listener):
+    def __init__(self, listener: str) -> None:
         super().__init__(listener, handle=self.handle_dns_request)
 
 
-    def handle_dns_request(self, data, address):
+    # gevent types a server's handler for a stream server, which is handed a
+    # socket; a datagram server hands its handler the bytes that arrived
+    def handle_dns_request(self, data: Any, address: tuple[str, int]) -> None:
 
         req = dnslib.DNSRecord.parse(data)
         qname = str(req.q.qname)
@@ -73,7 +76,7 @@ class DNSServer(DatagramServer):
                 self.socket.sendto(response.pack(), address)
 
 
-def main():
+def main() -> None:
     """ main entry point """
     DNSServer("10.0.0.2:53").serve_forever()
 

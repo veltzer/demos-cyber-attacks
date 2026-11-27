@@ -17,17 +17,17 @@ from scapy.layers.inet6 import IPv6
 from scapy.sendrecv import send
 
 
-def random_ip():
+def random_ip() -> str:
     """ generate a random IP number """
     return ".".join(map(str, (randint(0, 255)for _ in range(4))))
 
 
-def rand_int():
+def rand_int() -> int:
     """ return a random integer """
     return randint(1000, 9000)
 
 
-def syn_flood(dst_ip, dst_port, counter, *, six: bool):
+def syn_flood(dst_ip: str, dst_port: str, counter: int, *, six: bool) -> None:
     """ syn flood tcpv4/tcpv6 """
     print("Sending Packets...")
 
@@ -52,7 +52,7 @@ def syn_flood(dst_ip, dst_port, counter, *, six: bool):
         sys.stdout.flush()
 
 
-def main():
+def main() -> None:
     """ main entry point """
     parser = ArgumentParser()
     parser.add_argument(

@@ -19,7 +19,7 @@ limiter = Limiter(
 
 @app.route("/")
 @limiter.limit("500/minute")
-def root():
+def root() -> str:
     """ catch all urls """
     return "<html><body><h1>python with flask in a docker<h1></body><html>"
 

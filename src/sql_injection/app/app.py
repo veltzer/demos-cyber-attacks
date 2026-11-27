@@ -12,7 +12,7 @@ import subprocess
 
 import flask
 
-# from sqlalchemy import create_engine
+# from sqlalchemy import create_engine  # noqa: ERA001  teaching: kept in the comment for the reader
 import mysql.connector
 from flask import request
 from yattag import Doc, indent
@@ -115,7 +115,7 @@ def describe_table_data_html(conn, table_name):
         with tag("buttom"), tag("a", href="/"):
             text("Back to index")
     return indent(doc.getvalue())
-    # return doc.getvalue()
+    # return doc.getvalue()  # noqa: ERA001  teaching: kept in the comment for the reader
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -130,9 +130,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_POOL_SIZE"] = 20
 # Optional: Set pool recycle time (default None)
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 300
-# db = SQLAlchemy(app)
-# pool = MySQL(app)
-# engine = create_engine(uri)
+# db = SQLAlchemy(app)  # noqa: ERA001  teaching: kept in the comment for the reader
+# pool = MySQL(app)  # noqa: ERA001  teaching: kept in the comment for the reader
+# engine = create_engine(uri)  # noqa: ERA001  teaching: kept in the comment for the reader
 
 
 @app.route("/")
@@ -194,8 +194,8 @@ def do_something():
     """ do something with the shell """
     param = request.args.get("param")
     return subprocess.check_output(f"ffmpeg {param}", shell=True)
-    # os.system(f"ffmpeg {param}")
-    # return "<html><body>OK</body></html>"
+    # os.system(f"ffmpeg {param}")  # noqa: ERA001  teaching: kept in the comment for the reader
+    # return "<html><body>OK</body></html>"  # noqa: ERA001  teaching: kept in the comment for the reader
 
 
 if __name__ == "__main__":

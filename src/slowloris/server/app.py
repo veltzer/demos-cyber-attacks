@@ -9,11 +9,11 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 app = Flask("app")
-# limiter = Limiter(app)
+# limiter = Limiter(app)  # noqa: ERA001  teaching: kept in the comment for the reader
 limiter = Limiter(
     key_func=get_remote_address,  # Limit by IP address
     # app,
-    # default_limits=["200 per day", "50 per hour"]  # Global limits
+    # default_limits=["200 per day", "50 per hour"]  # Global limits  # noqa: ERA001  teaching: kept in the comment for the reader
 )
 
 
